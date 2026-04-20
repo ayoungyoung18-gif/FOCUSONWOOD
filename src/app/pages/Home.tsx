@@ -5,15 +5,17 @@ import { motion, AnimatePresence } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 // 슬라이드에 사용할 이미지들
-import mainImage from "@/assets/images/homepagemain.png";
-import accessories from "@/assets/images/accessories.jpg";
-import furnituremaking from "@/assets/images/furnituremaking.png";
+import mainImage from "@/assets/images/mainslide1.png";
+import accessories from "@/assets/images/mainaccessories.jpg";
+import furnituremaking from "@/assets/images/signaturetableandchair.png";
+import mainSlide3 from "@/assets/images/mainslide3.jpg";
+import closetrack from "@/assets/images/closetrack.jpg";
 
 export function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // 슬라이드 이미지 배열
-  const slides = [mainImage, accessories, furnituremaking];
+  const slides = [mainImage, accessories, closetrack];
 
   // 5초마다 슬라이드 자동 변경 로직
   useEffect(() => {
@@ -63,7 +65,7 @@ export function Home() {
       {/* 1. Hero Section: 자동 슬라이더 적용 */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             <motion.div
               key={currentSlide}
               initial={{ opacity: 0, scale: 1.1 }}
@@ -168,7 +170,7 @@ export function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl md:text-5xl mb-6 text-[#1A2F28] font-light tracking-tight">서비스</h2>
+              <h2 className="text-4xl md:text-5xl mb-6 text-[#1A2F28] font-light tracking-tight">포커스온우드</h2>
               <div className="w-12 h-px bg-[#1A2F28]/30 mx-auto mb-6" /> {/* 정갈한 구분선 추가 */}
               <p className="text-lg md:text-xl text-[#1A2F28]/70 max-w-2xl mx-auto leading-relaxed">
                 작은 소품부터 공간을 채우는 맞춤 가구까지,
@@ -230,7 +232,7 @@ export function Home() {
       {/* 4. CTA Section: 세이지그린 배경 적용 */}
       <section className="py-24 bg-[#8A9A78] text-[#1A2F28]">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl mb-6 font-serif">포커스온우드의 이야기</h2>
+          <h2 className="text-4xl mb-6 font-serif">포커스온우드의 철학</h2>
           <p className="text-xl mb-10 opacity-80">시간이 흐를수록 깊어지는 원목의 가치를 전합니다.</p>
           <Link
             to="/brand/story"
