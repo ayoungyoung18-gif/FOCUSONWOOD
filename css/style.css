@@ -1,0 +1,80 @@
+/* layout */
+#header {
+  width: 1920px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+
+  /* background: #f80101; */
+}
+#logo {
+}
+
+#nav {
+}
+
+#lnb {
+}
+#gnb {
+}
+#main {
+}
+#footer {
+}
+
+/* logo */
+#logo {
+  font-family: "PT Serif", serif;
+  font-weight: 700;
+  font-size: 30px;
+  font-style: normal;
+  padding: 20px;
+  padding-left: 50px;
+  background: rgb(252, 248, 2);
+}
+
+/* lnb */
+#lnb {
+}
+.lnb_inner ul {
+  display: flex;
+
+  list-style: none;
+
+  background: rgb(0, 255, 128);
+}
+.lnb_inner ul li {
+  padding: 20px;
+}
+/* gnb */
+#gnb ul {
+  display: flex;
+  justify-content: right;
+  list-style: none;
+
+  background: rgba(68, 0, 255, 0.5);
+}
+
+#gnb ul li {
+  padding: 5px;
+  padding-top: 20px;
+}
+#gnb ul li:first-child a {
+  top: -7px;
+  left: -20px;
+  display: inline-block;
+  padding: 7px 15px;
+  background: #4e4444;
+  color: #fbf9f4;
+  font-size: 13px;
+  /* border-radius: 5px; */
+  transition: 0.2s;
+  cursor: pointer;
+}
+#gnb ul li:nth-child(3) a {
+  padding-right: 50px;
+}
+
+.header_banner {
+  background-image: url(../img/헤더베너.jpg);
+}
