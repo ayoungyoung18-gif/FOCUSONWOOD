@@ -16,7 +16,7 @@ export function About() {
     },
     {
       icon: Users,
-      title: "제작에서 공간까지 이어지는 완성도",
+      title: "공간에 맞춘 정교한 마무리",
       description: "제작자가 현장을 직접 확인하고, 가구의 수평과 배치를 공간에 맞춰 완벽하게 세팅합니다.",
     },
     {

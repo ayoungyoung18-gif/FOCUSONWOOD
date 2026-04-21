@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { TreePine, Award, Heart, Users } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import furnitureMaking from "@/assets/images/furnituremaking.png";
 
 export function BrandStory() {
   const values = [
@@ -17,7 +18,7 @@ export function BrandStory() {
 
     {
       icon: Heart,
-      title: "제작에서 공간까지 이어지는 완성도",
+      title: "현장에서 설계되는 맞춤",
       description: "제작자가 현장을 직접 확인하고, 가구의 수평과 배치를 공간에 맞춰 완벽하게 세팅합니다.",
     },
     {
@@ -30,60 +31,68 @@ export function BrandStory() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1760939858984-5dc76f0ea34a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b29kZW4lMjBmdXJuaXR1cmUlMjB3b3Jrc2hvcCUyMGNyYWZ0c21hbnxlbnwxfHx8fDE3NzYzMDIwMjh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-            alt="나무결 공방"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
+      {/* Hero Section */}
+      <section className="relative h-[60vh] flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/50" />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="relative z-10 text-center text-white px-4"
         >
-          <h1 className="text-5xl md:text-6xl mb-4">브랜드 철학</h1>
-          <p className="text-xl text-gray-200">자연의 아름다움을 담은 가구를 만듭니다</p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 font-light tracking-tight">소중한 일상을 채우는 깊이</h1>
+          <p className="text-lg md:text-xl text-gray-200 font-light">
+            시간이 흐를수록 나무의 가치가 깊어지는 가구를 만듭니다.
+          </p>
         </motion.div>
       </section>
 
       {/* Story */}
-      <section className="py-20">
+      <section className="py-24 bg-[#DED8D1]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <h2 className="text-4xl mb-6">포커스온우드의 시작</h2>
+            <h2 className="text-3xl md:text-4xl font-normal tracking-wide text-[#4A4540]">포커스온우드의 철학</h2>
           </motion.div>
 
-          <div className="space-y-8 text-lg text-gray-700 leading-relaxed">
-            <p>
-              2006년, 나무를 사랑하는 한 장인의 작은 작업실에서 시작된 나무결 공방은 20년이 넘는 시간 동안 한결같이
-              자연의 아름다움을 담은 가구를 만들어왔습니다.
-            </p>
-            <p>
-              우리는 각각의 나무가 지닌 고유한 결과 색감을 살리면서, 현대적인 디자인과 전통적인 기법을 조화롭게
-              결합합니다. 빠르게 만들어내는 것보다 천천히, 정성스럽게 완성하는 것을 중요하게 생각합니다.
-            </p>
-            <p>
-              나무결 공방이 만드는 가구는 단순한 제품이 아닙니다. 오랜 시간 함께할 가족 같은 존재이며, 공간에 따뜻함을
-              더하는 예술 작품입니다. 우리는 이러한 철학을 바탕으로 모든 가구에 진심을 담아 제작합니다.
-            </p>
+          <div className="text-center mb-20 italic text-[#4A4540]/80 font-light leading-loose text-lg">
+            <p>공간에는 각자의 이야기가 있습니다.</p>
+            <p>시간이 지나도 변하지 않는 디자인이 머무는 공간,</p>
+            <p>그 안에서 우리의 일상은 더욱 즐거워집니다.</p>
+          </div>
+
+          <div className="space-y-16 text-base md:text-lg text-gray-700 leading-relaxed text-center break-keep">
+            <div className="space-y-6">
+              <p>포커스온우드는 목수가 직접 나무를 고르고 그 결을 살려 공간의 흐름을 빚어냅니다.</p>
+              <p>보이지 않는 곳까지 정교하게 연결하고, 마지막 순간까지 섬세하게 다듬습니다.</p>
+              <p>이러한 과정은 단순한 제작을 넘어 일상의 풍경을 만드는 일입니다.</p>
+            </div>
+
+            <div className="space-y-6">
+              <p>목수가 현장에서 직접 완성도를 높여, 가구가 공간에 자연스럽게 스며들도록 합니다.</p>
+              <p>사용자의 생활 습관과 동선을 고려한 배치는,</p>
+              <p>쓸수록 깊은 만족감과 편안함을 선사합니다.</p>
+            </div>
+
+            <div className="space-y-6 pt-8">
+              <p>손에 닿는 모든 면이 자연스러운 가구,</p>
+              <p className="font-medium text-[#4A4540] text-xl">
+                당신의 소중한 일상이 더욱 풍요로워지는 경험을 약속합니다.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#F9F6F3]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl mb-4">우리의 가치</h2>
-            <p className="text-xl text-gray-600">포커스온우드가 추구하는 핵심 가치입니다</p>
+            <h2 className="text-4xl mb-4">포커스온우드의 가치</h2>
+            {/* <p className="text-xl text-gray-600">포커스온우드가 추구하는 핵심 가치입니다</p> */}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
@@ -107,7 +116,7 @@ export function BrandStory() {
       </section>
 
       {/* Vision */}
-      <section className="py-20">
+      <section className="py-20 bg-[#DED8D1]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -115,11 +124,11 @@ export function BrandStory() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-4xl mb-6">우리의 비전</h2>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              포커스온우드는 단순히 가구를 판매하는 것이 아니라, 사람들의 삶에 자연의 따뜻함과 아름다움을 전하고자
-              합니다. 우리가 만드는 모든 제품이 누군가의 소중한 일상에 함께하며, 오랜 시간이 지나도 그 가치를 잃지
-              않기를 바랍니다.
+            <h2 className="text-3xl md:text-4xl mb-8 font-normal text-[#4A4540]">포커스온우드의 비전</h2>
+            <p className="text-lg text-gray-700 leading-relaxed break-keep">
+              포커스온우드는 단순히 가구를 만드는 것을 넘어, <strong>나무가 가진 본연의 온기와 생명력</strong>을 당신의
+              삶에 전하고자 합니다. 우리가 정성껏 깎고 다듬은 나무가 누군가의 소중한 일상에서 함께 호흡하며,{" "}
+              <strong>시간이 흐를수록 깊어지는 나무의 가치</strong>를 경험하시길 바랍니다.
             </p>
           </motion.div>
         </div>
