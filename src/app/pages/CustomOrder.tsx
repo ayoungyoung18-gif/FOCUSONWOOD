@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { motion } from 'motion/react';
-import { ClipboardList, MessageSquare, Ruler, Wrench, CheckCircle, Package } from 'lucide-react';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { useState } from "react";
+import { motion } from "motion/react";
+import { ClipboardList, MessageSquare, Ruler, Wrench, CheckCircle, Package } from "lucide-react";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 export function CustomOrder() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    furnitureType: '',
-    size: '',
-    material: '',
-    budget: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    furnitureType: "",
+    size: "",
+    material: "",
+    budget: "",
+    message: "",
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -23,21 +23,19 @@ export function CustomOrder() {
     setTimeout(() => {
       setSubmitted(false);
       setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        furnitureType: '',
-        size: '',
-        material: '',
-        budget: '',
-        message: '',
+        name: "",
+        email: "",
+        phone: "",
+        furnitureType: "",
+        size: "",
+        material: "",
+        budget: "",
+        message: "",
       });
     }, 3000);
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -47,48 +45,39 @@ export function CustomOrder() {
   const process = [
     {
       icon: MessageSquare,
-      title: '1. 상담',
-      description: '원하시는 가구의 용도, 사이즈, 디자인에 대해 상담합니다',
+      title: "1. 상담",
+      description: "원하시는 가구의 용도, 사이즈, 디자인에 대해 상담합니다",
     },
     {
       icon: Ruler,
-      title: '2. 설계',
-      description: '공간 측정 후 최적의 디자인을 제안합니다',
+      title: "2. 설계",
+      description: "공간 측정 후 최적의 디자인을 제안합니다",
     },
     {
       icon: ClipboardList,
-      title: '3. 견적',
-      description: '소재와 디자인에 따른 정확한 견적을 제공합니다',
+      title: "3. 견적",
+      description: "소재와 디자인에 따른 정확한 견적을 제공합니다",
     },
     {
       icon: Wrench,
-      title: '4. 제작',
-      description: '숙련된 장인이 정성스럽게 가구를 제작합니다',
+      title: "4. 제작",
+      description: "숙련된 장인이 정성스럽게 가구를 제작합니다",
     },
     {
       icon: CheckCircle,
-      title: '5. 검수',
-      description: '완성된 가구의 품질을 꼼꼼히 확인합니다',
+      title: "5. 검수",
+      description: "완성된 가구의 품질을 꼼꼼히 확인합니다",
     },
     {
       icon: Package,
-      title: '6. 배송 및 설치',
-      description: '안전하게 배송하고 전문적으로 설치합니다',
+      title: "6. 배송 및 설치",
+      description: "안전하게 배송하고 전문적으로 설치합니다",
     },
   ];
 
-  const furnitureTypes = [
-    '테이블',
-    '의자',
-    '수납장/서랍장',
-    '책상',
-    '책장',
-    'TV장',
-    '침대',
-    '기타',
-  ];
+  const furnitureTypes = ["테이블", "의자", "수납장/서랍장", "책상", "책장", "TV장", "침대", "기타"];
 
-  const materials = ['참나무', '월넛', '애쉬', '티크', '상담 후 결정'];
+  const materials = ["월넛", "화이트오크", "레드오크", "메이플", "상담 후 결정"];
 
   return (
     <div>
@@ -108,9 +97,7 @@ export function CustomOrder() {
           className="relative z-10 text-center text-white px-4"
         >
           <h1 className="text-5xl md:text-6xl mb-4">맞춤 제작 의뢰</h1>
-          <p className="text-xl text-gray-200">
-            공간과 라이프스타일에 딱 맞는 가구를 제작합니다
-          </p>
+          <p className="text-xl text-gray-200">공간과 라이프스타일에 딱 맞는 가구를 제작합니다</p>
         </motion.div>
       </section>
 
@@ -119,9 +106,7 @@ export function CustomOrder() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl mb-4">제작 과정</h2>
-            <p className="text-xl text-gray-600">
-              상담부터 배송까지, 체계적인 프로세스로 진행됩니다
-            </p>
+            <p className="text-xl text-gray-600">상담부터 배송까지, 체계적인 프로세스로 진행됩니다</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {process.map((step, index) => (
@@ -149,9 +134,7 @@ export function CustomOrder() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl mb-4">의뢰서 작성</h2>
-            <p className="text-xl text-gray-600">
-              아래 양식을 작성해주시면 빠른 시일 내에 연락드리겠습니다
-            </p>
+            <p className="text-xl text-gray-600">아래 양식을 작성해주시면 빠른 시일 내에 연락드리겠습니다</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -297,12 +280,10 @@ export function CustomOrder() {
               type="submit"
               disabled={submitted}
               className={`w-full py-4 rounded-lg transition-colors text-lg ${
-                submitted
-                  ? 'bg-green-600 text-white'
-                  : 'bg-gray-900 text-white hover:bg-gray-800'
+                submitted ? "bg-green-600 text-white" : "bg-gray-900 text-white hover:bg-gray-800"
               }`}
             >
-              {submitted ? '의뢰서가 접수되었습니다' : '의뢰서 제출하기'}
+              {submitted ? "의뢰서가 접수되었습니다" : "의뢰서 제출하기"}
             </button>
           </form>
 
@@ -320,21 +301,17 @@ export function CustomOrder() {
             <div className="bg-white p-6 rounded-lg">
               <h3 className="text-lg mb-2">Q. 제작 기간은 얼마나 걸리나요?</h3>
               <p className="text-gray-600">
-                A. 일반적으로 4-6주가 소요되며, 가구의 크기와 복잡도에 따라
-                달라질 수 있습니다.
+                A. 일반적으로 4-6주가 소요되며, 가구의 크기와 복잡도에 따라 달라질 수 있습니다.
               </p>
             </div>
             <div className="bg-white p-6 rounded-lg">
               <h3 className="text-lg mb-2">Q. 견적은 어떻게 받나요?</h3>
-              <p className="text-gray-600">
-                A. 의뢰서 제출 후 상담을 통해 정확한 견적을 제공해드립니다.
-              </p>
+              <p className="text-gray-600">A. 의뢰서 제출 후 상담을 통해 정확한 견적을 제공해드립니다.</p>
             </div>
             <div className="bg-white p-6 rounded-lg">
               <h3 className="text-lg mb-2">Q. 디자인 수정이 가능한가요?</h3>
               <p className="text-gray-600">
-                A. 제작 전 디자인 확정 단계에서 수정이 가능합니다. 제작 시작
-                후에는 변경이 어렵습니다.
+                A. 제작 전 디자인 확정 단계에서 수정이 가능합니다. 제작 시작 후에는 변경이 어렵습니다.
               </p>
             </div>
           </div>

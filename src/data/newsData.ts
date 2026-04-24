@@ -1,0 +1,60 @@
+// src/data/newsData.ts
+export const newsData = [
+  {
+    id: 1,
+    title: "2019국제기능올림픽선수협회 금메달 수상",
+    date: "2019.08.06",
+    category: "소식",
+    excerpt: "2019 국제기능올림픽선수협회에서 주관한 기능 경기 대회에서 목공 부문 금메달을 수상하였습니다.",
+    image: "/images/award20192.png",
+  },
+  {
+    id: 2,
+    title: "메이크업 박스 및 스툴 만들기 수업 진행",
+    date: "2019.10.12",
+    category: "소식",
+    excerpt: "킨텍스 '2019 K-뷰티박람회'에서 4일간 일반인을 대상으로 가구 DIY 체험 수업을 진행하였습니다.",
+    image: "/images/teaching1.png",
+  },
+  {
+    id: 3,
+    title: "2019 공예트렌트 페어 브랜드관 참가",
+    date: "2019.12.13",
+    category: "전시",
+    excerpt:
+      "삼성동 코엑스(COEX)에서 열린 '2019 공예트렌드페어'에 참가하여 포커스온우드만의 가구와 목공예 제품을 선보였습니다.",
+    image: "/images/signaturetableandchair.png",
+  },
+  {
+    id: 4,
+    title: "경기가구창작스튜디오 작품 출품",
+    date: "2020.07.30",
+    category: "소식",
+    excerpt: "경기가구창작스튜디오 전시를 위해 제작한 우드 스피커와 4인용 테이블 세트를 출품하였습니다.",
+    image: "/images/WS2020.png",
+  },
+  {
+    id: 5,
+    title: "언론이 주목한 포커스온우드: '2022 공예트렌드페어'",
+    date: "2022.12.08",
+    category: "전시",
+    excerpt: "한스경제 보도를 통해 포커스온우드만의 독창적인 가구 제작 철학이 소개되었습니다.",
+    image: "/images/Fair2022.png",
+  },
+  {
+    id: 6,
+    title: "한국국제가구 및 인테리어산업대전(KOFURN) 참가",
+    date: "2023.08.23",
+    category: "전시",
+    excerpt: "호두나무(월넛) 조각들을 정교하게 이어 붙여 나무 본연의 색과 결을 패턴으로 구현했습니다.",
+    image: "/images/Fair2023.png",
+  },
+  {
+    id: 7,
+    title: "포커스온우드 공식 홈페이지 리뉴얼",
+    date: "2024.01.01",
+    category: "소식",
+    excerpt: "사용자 편의를 위해 포커스온우드의 공식 웹사이트가 새롭게 단장되었습니다.",
+    image: "/images/Fair2023.png",
+  },
+];

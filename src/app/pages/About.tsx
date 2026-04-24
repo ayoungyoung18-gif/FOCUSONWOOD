@@ -27,10 +27,10 @@ export function About() {
   ];
 
   const timeline = [
-    { year: "2019", event: "가구기능경기대회 금매달 수상" },
+    { year: "2019", event: "가구기능경기대회 금상 수상" },
     { year: "2020", event: "포커스온우드 설립" },
-    { year: "2015", event: "맞춤 가구 전문 브랜드로 전환" },
-    { year: "2020", event: "서울 성수동 쇼룸 오픈" },
+    { year: "2023", event: "맞춤 가구 전문 브랜드로 전환" },
+    { year: "2024", event: "서울 성수동 쇼룸 오픈" },
     { year: "2026", event: "온라인 플랫폼 런칭" },
   ];
 
@@ -41,7 +41,7 @@ export function About() {
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1683115099414-c83156978045?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b29kJTIwd29ya3Nob3AlMjBjcmFmdHNtYW58ZW58MXx8fHwxNzc2MzAwNzM0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-            alt="나무결 공방"
+            alt="포커스온우드"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/50" />
@@ -52,7 +52,7 @@ export function About() {
           className="relative z-10 text-center text-white px-4"
         >
           <h1 className="text-5xl md:text-6xl mb-4">공방 소개</h1>
-          <p className="text-xl text-gray-200">자연의 아름다움을 담은 가구를 만듭니다</p>
+          <p className="text-xl text-gray-200">시간이 흐를수록 나무의 가치가 깊어지는 가구를 만듭니다.</p>
         </motion.div>
       </section>
 
@@ -65,12 +65,11 @@ export function About() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-4xl mb-6">우리의 이야기</h2>
+            <h2 className="text-4xl mb-6">포커스온우드의 이야기</h2>
             <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-              <p>
-                포커스온우드는 2006년, 나무를 사랑하는 한 장인의 작은 작업실에서 시작되었습니다. 20년이 넘는 시간 동안
-                우리는 한결같이 자연의 아름다움을 담은 가구를 만들어왔습니다.
-              </p>
+              <p>포커스온우드는 목수가 직접 나무를 고르고 그 결을 살려 공간의 흐름을 빚어냅니다.</p>
+              <p>보이지 않는 곳까지 정교하게 연결하고, 마지막 순간까지 섬세하게 다듬습니다.</p>
+              <p>이러한 과정은 단순한 제작을 넘어 일상의 풍경을 만드는 일입니다.</p>
               <p>
                 각각의 나무가 지닌 고유한 결과 색감을 살리면서, 현대적인 디자인과 전통적인 기법을 조화롭게 결합합니다.
                 빠르게 만들어내는 것보다 천천히, 정성스럽게 완성하는 것을 중요하게 생각합니다.
@@ -145,12 +144,12 @@ export function About() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl mb-6">공방 방문 안내</h2>
           <p className="text-xl text-gray-300 mb-8">
-            실제 가구를 보고 만져보실 수 있습니다.
+            현재는 제작 위주의 공간으로 운영되고 있으며 전시 공간도 함께 준비 중입니다.
             <br />
             사전 예약 후 방문해 주시면 더욱 자세한 상담이 가능합니다.
           </p>
           <div className="space-y-2 text-lg">
-            <p>서울시 성동구 성수동 123-45</p>
+            <p>경기도 포천시 자작로 93-5 </p>
             <p>운영시간: 월-금 10:00-19:00, 토 10:00-17:00</p>
             <p>문의: 02-1234-5678</p>
           </div>

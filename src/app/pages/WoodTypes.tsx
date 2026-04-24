@@ -4,40 +4,44 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 export function WoodTypes() {
   const woods = [
     {
-      name: "참나무 (Oak)",
-      characteristics: "단단하고 내구성이 뛰어나며 아름다운 나뭇결",
-      color: "밝은 갈색에서 중간 갈색",
-      uses: "테이블, 의자, 수납장, 도마",
-      image:
-        "https://images.unsplash.com/photo-1683557165720-cc8dd486233c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvYWslMjB3b29kJTIwdGV4dHVyZSUyMGdyYWlufGVufDF8fHx8MTc3NjMwMjAyOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      features: ["높은 내구성", "항균 효과", "아름다운 결"],
+      name: "호두나무 (Walnut)",
+      characteristics: "흔히 '월넛'이라 불리며, 원목 중 가장 고급스럽고 중후한 멋을 지닌 최상급 목재",
+      color: "진한 밤색에서 보랏빛이 감도는 초콜릿색",
+      uses: "거실 메인 식탁, 서재 책상, 침대 프레임, 최고급 인테리어 소품",
+      image: "/images/woodwalnut.jpg",
+      features: ["'월넛'과 동일 수종", "습기에 강해 뒤틀림이 매우 적음", "세월이 흐를수록 깊어지는 색감"],
     },
     {
-      name: "월넛 (Walnut)",
-      characteristics: "고급스러운 짙은 색상과 우아한 질감",
-      color: "진한 갈색에서 초콜릿 색상",
-      uses: "고급 가구, 액세서리, 악기",
-      image:
-        "https://images.unsplash.com/photo-1655512318649-8e32533c1c9f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YWxudXQlMjB3b29kJTIwdGV4dHVyZXxlbnwxfHx8fDE3NzYyNTkzNTF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      features: ["고급스러운 색상", "가공성 우수", "안정적 강도"],
+      name: "참나무 - 화이트오크 (White Oak)",
+      characteristics: "단단한 강도와 차분한 결을 가진 참나무의 일종으로, 밝은 톤 원목의 대명사",
+      color: "밝은 베이지에서 옅은 갈색",
+      uses: "가족용 식탁, 튼튼한 의자, 고급 수납장",
+      image: "https://unsplash.com",
+      features: ["오크 중 수분에 가장 강함", "매우 단단하여 찍힘에 강함", "유행을 타지 않는 정석적인 결"],
     },
     {
-      name: "애쉬 (Ash)",
-      characteristics: "밝은 색상과 뚜렷한 나뭇결",
-      color: "크림색에서 연한 갈색",
-      uses: "모던 가구, 책상, 선반",
-      image:
-        "https://images.unsplash.com/photo-1683557165720-cc8dd486233c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvYWslMjB3b29kJTIwdGV4dHVyZSUyMGdyYWlufGVufDF8fHx8MTc3NjMwMjAyOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      features: ["밝고 깔끔한 색상", "탄력성", "현대적 느낌"],
+      name: "참나무 - 레드오크 (Red Oak)",
+      characteristics: "나뭇결이 시원하고 뚜렷하며, 화이트오크보다 따뜻한 붉은 기운이 감도는 참나무",
+      color: "연한 분홍빛이 도는 갈색",
+      uses: "침대, 서랍장, 옷장 등 넓은 면적의 가구",
+      image: "https://unsplash.com",
+      features: ["선명하고 화려한 나뭇결", "우수한 탄성으로 충격에 강함", "합리적인 가격대의 하드우드"],
     },
     {
-      name: "티크 (Teak)",
-      characteristics: "방수성과 내구성이 뛰어난 고급 목재",
-      color: "황금빛 갈색",
-      uses: "야외 가구, 고급 가구, 주방용품",
-      image:
-        "https://images.unsplash.com/photo-1655512318649-8e32533c1c9f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YWxudXQlMjB3b29kJTIwdGV4dHVyZXxlbnwxfHx8fDE3NzYyNTkzNTF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      features: ["방수성 탁월", "높은 내구성", "자연 오일 함유"],
+      name: "단풍나무 (Maple)",
+      characteristics: "흔히 '메이플'이라 불리며, 조직이 매우 치밀해 표면이 도자기처럼 매끄러운 목재",
+      color: "우윳빛 크림색에서 연한 노란색",
+      uses: "아이방 가구, 주방 도마, 밝은 분위기의 거실 가구",
+      image: "https://unsplash.com",
+      features: ["'메이플'과 동일 수종", "먼지나 오염이 잘 스며들지 않음", "공간을 넓어 보이게 하는 밝은 톤"],
+    },
+    {
+      name: "너도밤나무 (Beech)",
+      characteristics: "유럽에서 대중적인 '비취' 목재로, 결이 고르고 탄력이 좋아 부드러운 곡선 가공에 최적",
+      color: "은은한 살구색이 감도는 베이지",
+      uses: "곡선형 의자, 아동용 가구, 주방 소품",
+      image: "https://unsplash.com",
+      features: ["'비취'와 동일 수종", "옹이가 거의 없어 깨끗한 느낌", "살결처럼 부드러운 촉감"],
     },
   ];
 

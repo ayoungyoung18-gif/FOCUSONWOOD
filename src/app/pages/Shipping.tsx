@@ -1,63 +1,63 @@
-import { motion } from 'motion/react';
-import { Truck, Package, Home, MapPin } from 'lucide-react';
+import { motion } from "motion/react";
+import { Truck, Package, Home, MapPin } from "lucide-react";
 
 export function Shipping() {
   const shippingTypes = [
     {
       icon: Package,
-      title: '소품 배송',
-      items: '도마, 트레이, 소형 액세서리',
-      method: '택배 배송',
-      time: '2-3일',
-      cost: '3,000원 (5만원 이상 무료)',
+      title: "소품 배송",
+      items: "도마, 트레이, 소형 액세서리",
+      method: "택배 배송",
+      time: "2-3일",
+      cost: "3,000원 (5만원 이상 무료)",
     },
     {
       icon: Truck,
-      title: '가구 배송',
-      items: '테이블, 의자, 수납장 등',
-      method: '화물 배송',
-      time: '5-7일',
-      cost: '지역별 상이 (착불)',
+      title: "가구 배송",
+      items: "테이블, 의자, 수납장 등",
+      method: "직접배송",
+      time: "5-7일",
+      cost: "지역별 상이 (착불)",
     },
     {
       icon: Home,
-      title: '대형 가구 배송',
-      items: '대형 테이블, 붙박이 가구',
-      method: '전문 배송 및 설치',
-      time: '일정 협의',
-      cost: '별도 견적',
+      title: "대형 가구 배송",
+      items: "대형 테이블, 붙박이 가구",
+      method: "직접 배송 및 설치",
+      time: "일정 협의",
+      cost: "별도 견적",
     },
   ];
 
   const process = [
     {
-      step: '주문 접수',
-      description: '주문이 완료되면 제작이 시작됩니다',
+      step: "주문 접수",
+      description: "주문이 완료되면 제작이 시작됩니다",
     },
     {
-      step: '제작 완료',
-      description: '품질 검수 후 포장을 진행합니다',
+      step: "제작 완료",
+      description: "품질 검수 후 포장을 진행합니다",
     },
     {
-      step: '배송 준비',
-      description: '안전한 포장과 함께 배송 정보를 전달드립니다',
+      step: "배송 준비",
+      description: "안전한 포장과 함께 배송 정보를 전달드립니다",
     },
     {
-      step: '배송 출발',
-      description: '운송장 번호를 문자로 안내드립니다',
+      step: "배송 출발",
+      description: "운송장 번호를 문자로 안내드립니다",
     },
     {
-      step: '배송 완료',
-      description: '제품 수령 및 설치(필요시) 완료',
+      step: "배송 완료",
+      description: "제품 수령 및 설치(필요시) 완료",
     },
   ];
 
   const regions = [
-    { area: '서울/경기', cost: '무료 (일부 지역 제외)' },
-    { area: '인천/충청', cost: '30,000원~' },
-    { area: '강원/전라', cost: '50,000원~' },
-    { area: '경상', cost: '60,000원~' },
-    { area: '제주', cost: '별도 문의' },
+    { area: "서울/경기", cost: "무료 (일부 지역 제외)" },
+    { area: "인천/충청", cost: "30,000원~" },
+    { area: "강원/전라", cost: "50,000원~" },
+    { area: "경상", cost: "60,000원~" },
+    { area: "제주", cost: "별도 문의" },
   ];
 
   return (
@@ -66,9 +66,7 @@ export function Shipping() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-5xl mb-4">배송 방법</h1>
-          <p className="text-xl text-gray-600">
-            안전하고 신속한 배송 서비스를 제공합니다
-          </p>
+          <p className="text-xl text-gray-600">안전하고 신속한 배송 서비스를 제공합니다</p>
         </div>
 
         {/* Shipping Types */}
@@ -145,7 +143,7 @@ export function Shipping() {
                 <div
                   key={index}
                   className={`flex justify-between p-4 ${
-                    index !== regions.length - 1 ? 'border-b border-gray-200' : ''
+                    index !== regions.length - 1 ? "border-b border-gray-200" : ""
                   }`}
                 >
                   <div className="flex items-center space-x-2">
@@ -156,9 +154,7 @@ export function Shipping() {
                 </div>
               ))}
             </div>
-            <p className="text-sm text-gray-500 text-center mt-4">
-              * 도서산간 지역은 추가 비용이 발생할 수 있습니다
-            </p>
+            <p className="text-sm text-gray-500 text-center mt-4">* 도서산간 지역은 추가 비용이 발생할 수 있습니다</p>
           </div>
         </motion.div>
 
@@ -171,15 +167,9 @@ export function Shipping() {
         >
           <h3 className="text-2xl mb-4">설치 서비스</h3>
           <div className="space-y-3 text-gray-700">
-            <p>
-              • 대형 가구의 경우 전문 기사가 배송 및 설치를 진행합니다
-            </p>
-            <p>
-              • 조립이 필요한 제품은 조립 서비스를 제공합니다 (별도 비용)
-            </p>
-            <p>
-              • 맞춤 제작 가구는 설치 서비스가 포함되어 있습니다
-            </p>
+            <p>• 대형 가구의 경우 전문 기사가 배송 및 설치를 진행합니다</p>
+            <p>• 조립이 필요한 제품은 조립 서비스를 제공합니다 (별도 비용)</p>
+            <p>• 맞춤 제작 가구는 설치 서비스가 포함되어 있습니다</p>
           </div>
         </motion.div>
 
@@ -197,12 +187,8 @@ export function Shipping() {
 
         {/* Contact */}
         <div className="mt-12 text-center">
-          <p className="text-gray-600 mb-2">
-            배송 관련 문의사항이 있으시면 언제든지 연락해주세요
-          </p>
-          <p className="text-lg">
-            전화: 02-1234-5678 | 이메일: delivery@namugyeol.kr
-          </p>
+          <p className="text-gray-600 mb-2">배송 관련 문의사항이 있으시면 언제든지 연락해주세요</p>
+          <p className="text-lg">전화: 02-1234-5678 | 이메일: delivery@namugyeol.kr</p>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { X, Search } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { useState } from "react";
+import { X, Search } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -8,12 +8,12 @@ interface SearchModalProps {
 }
 
 export function SearchModal({ isOpen, onClose }: SearchModalProps) {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     // Implement search logic here
-    console.log('Searching for:', searchQuery);
+    console.log("Searching for:", searchQuery);
   };
 
   return (
@@ -39,20 +39,14 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             <div className="bg-white rounded-lg shadow-xl p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl">검색</h2>
-                <button
-                  onClick={onClose}
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                >
+                <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                   <X size={20} />
                 </button>
               </div>
 
               <form onSubmit={handleSearch}>
                 <div className="relative">
-                  <Search
-                    className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                    size={20}
-                  />
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
                   <input
                     type="text"
                     placeholder="제품명, 카테고리 등을 검색하세요"
@@ -66,7 +60,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
               {/* Search suggestions or results would go here */}
               <div className="mt-4 text-sm text-gray-500">
-                <p>인기 검색어: 도마, 수납장, 참나무 테이블</p>
+                <p>인기 검색어: 월넛테이블, 월넛수납장, 보드기키링</p>
               </div>
             </div>
           </motion.div>

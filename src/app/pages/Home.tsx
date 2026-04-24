@@ -3,19 +3,13 @@ import { Link } from "react-router";
 import { ArrowRight, Hammer, Heart, Leaf, ShoppingBag, Calendar } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-
-// 슬라이드에 사용할 이미지들
-import mainImage from "@/assets/images/mainslide1.png";
-import accessories from "@/assets/images/mainaccessories.jpg";
-import furnituremaking from "@/assets/images/signaturetableandchair.png";
-import mainSlide3 from "@/assets/images/mainslide3.jpg";
-import closetrack from "@/assets/images/closetrack.jpg";
+import { newsData } from "../../data/newsData";
 
 export function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // 슬라이드 이미지 배열
-  const slides = [mainImage, accessories, closetrack];
+  const slides = ["/images/mainslide1.png", "/images/mainaccessories.jpg", "/images/closetrack.jpg"];
 
   // 5초마다 슬라이드 자동 변경 로직
   useEffect(() => {
@@ -24,6 +18,9 @@ export function Home() {
     }, 5000);
     return () => clearInterval(timer);
   }, [slides.length]);
+
+  // 최신순 정렬 후 상위 3개만 추출
+  const latestNews = [...newsData].sort((a, b) => b.id - a.id).slice(0, 3);
 
   const features = [
     {
@@ -48,14 +45,14 @@ export function Home() {
       title: "소품",
       description: "일상을 채우는 작은 오브제",
       link: "/shop",
-      image: accessories,
+      image: "/images/mainaccessories.jpg",
       icon: ShoppingBag,
     },
     {
       title: "맞춤 가구",
       description: "공간에 맞춘 제작 가구",
       link: "/custom-order",
-      image: furnituremaking,
+      image: "/images/signaturetableandchair.png",
       icon: Hammer,
     },
   ];
@@ -256,27 +253,26 @@ export function Home() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#F9F6F3]">
+      {/* 3. 뉴스 섹션: 최신 뉴스 3개 자동 연동 */}
+      <section className="py-24 bg-[#A6B28B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* 헤더: 서비스 섹션과 통일감 있는 정렬 */}
           <div className="flex justify-between items-end mb-12">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <h2 className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-2">Focus on News</h2>
-              <h3 className="text-3xl md:text-4xl font-light text-[#4A4540]">포커스온우드의 이야기</h3>
+              <h2 className="text-sm uppercase tracking-[0.3em] text-white/70 mb-2">Focus on News</h2>
+              <h3 className="text-3xl md:text-4xl font-light text-white">포커스온우드의 이야기</h3>
             </motion.div>
 
             <Link
-              to="/news"
-              className="hidden md:flex items-center space-x-2 text-sm tracking-widest text-gray-500 hover:text-[#8A9A78] transition-colors group"
+              to="/brand/news"
+              className="hidden md:flex items-center space-x-2 text-sm tracking-widest text-white/80 hover:text-white transition-colors group"
             >
               <span>VIEW ALL</span>
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
 
-          {/* 뉴스 그리드 */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {news.map((item, index) => (
+            {latestNews.map((item, index) => (
               <motion.article
                 key={item.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -285,41 +281,34 @@ export function Home() {
                 transition={{ delay: index * 0.1 }}
                 className="group cursor-pointer"
               >
-                {/* 이미지 영역: 서비스 카드와 유사한 딥그린 오버레이 효과 */}
-                <div className="relative overflow-hidden rounded-2xl mb-6 aspect-[4/3]">
-                  <ImageWithFallback
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-[#1A2F28]/20 group-hover:bg-transparent transition-colors duration-500" />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-white/90 backdrop-blur-sm text-[#4A4540] px-3 py-1 text-xs tracking-wider font-medium rounded-full">
-                      {item.category}
-                    </span>
+                <Link to="/brand-story">
+                  <div className="relative overflow-hidden rounded-2xl mb-6 aspect-[4/3] bg-black/10">
+                    <ImageWithFallback
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
                   </div>
-                </div>
 
-                {/* 텍스트 영역 */}
-                <div className="px-2">
-                  <div className="flex items-center space-x-2 text-xs text-[#8A9A78] mb-3">
-                    <Calendar size={14} strokeWidth={1.5} />
-                    <span className="tracking-widest">{item.date}</span>
+                  <div className="px-2">
+                    <div className="flex items-center space-x-2 text-xs text-white/60 mb-3">
+                      <Calendar size={14} strokeWidth={1.5} />
+                      <span className="tracking-widest">{item.date}</span>
+                    </div>
+                    <h4 className="text-xl mb-3 text-white font-normal group-hover:text-[#1C352D] transition-colors leading-snug break-keep">
+                      {item.title}
+                    </h4>
+                    <p className="text-white/70 text-sm leading-relaxed line-clamp-2 break-keep">{item.excerpt}</p>
                   </div>
-                  <h4 className="text-xl mb-3 text-[#4A4540] font-normal group-hover:text-[#8A9A78] transition-colors leading-snug break-keep">
-                    {item.title}
-                  </h4>
-                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 break-keep">{item.excerpt}</p>
-                </div>
+                </Link>
               </motion.article>
             ))}
           </div>
 
-          {/* 모바일용 더보기 버튼 */}
           <div className="mt-12 text-center md:hidden">
             <Link
-              to="/news"
-              className="inline-block border border-gray-200 px-8 py-3 text-sm tracking-widest text-gray-500"
+              to="/brand-story"
+              className="inline-block border border-white/20 px-8 py-3 text-sm tracking-widest text-white hover:bg-white hover:text-[#A6B28B] transition-all"
             >
               더보기
             </Link>
@@ -327,18 +316,45 @@ export function Home() {
         </div>
       </section>
 
-      {/* 4. CTA Section: 세이지그린 배경 적용 */}
-      <section className="py-24 bg-[#8A9A78] text-[#1A2F28]">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl mb-6 font-serif">포커스온우드의 철학</h2>
-          <p className="text-xl mb-10 opacity-80">시간이 흐를수록 깊어지는 원목의 가치를 전합니다.</p>
-          <Link
-            to="/brand/story"
-            className="inline-flex items-center space-x-2 bg-[#1A2F28] text-[#F1EDE8] px-10 py-4 rounded-full hover:bg-opacity-90 transition-all cursor-pointer shadow-md"
+      {/* 4. CTA Section: 비디오 배경 적용 */}
+      <section className="relative py-40 overflow-hidden bg-[#1C352D] text-white">
+        {/* 직접 비디오 태그 사용 (가장 안정적) */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-60" // 투명도로 분위기 조절
           >
-            <span>브랜드 스토리 보기</span>
-            <ArrowRight size={20} />
-          </Link>
+            {/* public/videos/ 폴더에 저장된 파일 경로 */}
+            <source src="/videos/philosophy.mp4" type="video/mp4" />
+            해당 브라우저는 비디오 태그를 지원하지 않습니다.
+          </video>
+          {/* 영상 위에 컬러 오버레이를 씌워 가독성 확보 */}
+          <div className="absolute inset-0 bg-[#1C352D]/30 backdrop-blur-[1px]" />
+        </div>
+
+        {/* 콘텐츠 레이어 */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl mb-8 font-light tracking-tight">포커스온우드의 철학</h2>
+            <p className="text-lg md:text-2xl mb-12 opacity-90 font-extralight leading-relaxed">
+              시간이 흐를수록 깊어지는 <br className="md:hidden" /> 원목의 가치를 전합니다.
+            </p>
+            <Link
+              to="/brand/news"
+              className="inline-flex items-center space-x-3 bg-white text-[#1C352D] px-12 py-5 rounded-full hover:bg-gray-100 transition-all shadow-2xl font-bold tracking-widest"
+            >
+              <span>BRAND STORY</span>
+              <ArrowRight size={20} />
+            </Link>
+          </motion.div>
         </div>
       </section>
     </div>
