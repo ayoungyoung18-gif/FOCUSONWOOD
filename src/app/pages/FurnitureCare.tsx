@@ -1,102 +1,114 @@
-import { motion } from 'motion/react';
-import { Droplet, Sun, Wind, AlertCircle } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Droplet, Sun, Wind, CheckCircle2, XCircle } from "lucide-react";
 
 export function FurnitureCare() {
   const tips = [
     {
       icon: Droplet,
-      title: '습기 관리',
-      description:
-        '물이나 액체가 묻었을 경우 즉시 마른 천으로 닦아주세요. 과도한 습기는 나무의 변형을 일으킬 수 있습니다.',
-      dos: ['즉시 물기 제거', '실내 습도 40-60% 유지', '주기적 환기'],
-      donts: ['젖은 행주 사용', '가습기 직접 노출', '물에 장시간 방치'],
+      title: "습기 관리",
+      description: "과도한 습기는 나무의 변형을 일으킵니다. 물기가 묻었을 땐 즉시 마른 천으로 결을 따라 닦아주세요.",
+      dos: ["실내 습도 40-60% 유지", "주기적인 자연 환기"],
+      donts: ["젖은 행주 사용 금지", "가습기 직접 노출 주의"],
     },
     {
       icon: Sun,
-      title: '햇빛 차단',
-      description:
-        '직사광선에 장시간 노출되면 변색이 발생할 수 있습니다. 커튼이나 블라인드로 햇빛을 조절해주세요.',
-      dos: ['커튼/블라인드 사용', '간접 조명 활용', '정기적 위치 변경'],
-      donts: ['직사광선 장시간 노출', '창가 바로 옆 배치', '강한 조명 직접 조사'],
+      title: "빛과 변색",
+      description: "직사광선은 나무의 수분을 뺏고 변색을 유발합니다. 커튼 등으로 은은한 광량을 유지해주세요.",
+      dos: ["블라인드/커튼 활용", "정기적인 가구 위치 변경"],
+      donts: ["직사광선 장시간 노출", "창가 바로 옆 배치 자제"],
     },
     {
       icon: Wind,
-      title: '온도 관리',
-      description:
-        '급격한 온도 변화는 나무의 수축과 팽창을 일으킬 수 있습니다. 일정한 실내 온도를 유지해주세요.',
-      dos: ['실온 18-24도 유지', '서서히 온도 조절', '적절한 난방'],
-      donts: ['난방기구 근처 배치', '급격한 온도 변화', '에어컨 바람 직접 노출'],
-    },
-  ];
-
-  const cleaning = [
-    {
-      step: '일상 청소',
-      method: '부드러운 마른 천으로 먼지를 제거합니다',
-      frequency: '매일 또는 필요시',
-    },
-    {
-      step: '물기 제거',
-      method: '물이나 액체가 묻으면 즉시 마른 천으로 닦아냅니다',
-      frequency: '발생 즉시',
-    },
-    {
-      step: '오일 관리',
-      method: '천연 오일을 얇게 발라 나무에 영양을 공급합니다',
-      frequency: '6개월마다',
-    },
-    {
-      step: '왁스 마감',
-      method: '왁스를 발라 광택을 내고 보호막을 형성합니다',
-      frequency: '1년마다',
+      title: "온도 유지",
+      description: "급격한 온도 변화는 수축과 팽창의 원인이 됩니다. 일정한 실내 온도를 유지하는 것이 좋습니다.",
+      dos: ["실온 18-24도 유지", "완만한 온도 조절"],
+      donts: ["난방기구 근처 배치", "에어컨 직사 바람 노출"],
     },
   ];
 
   return (
-    <div className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl mb-4">가구 관리 방법</h1>
-          <p className="text-xl text-gray-600">
-            원목 가구를 오래도록 아름답게 사용하는 방법
-          </p>
+    <div className="bg-[#F9F6F3] min-h-screen pb-32">
+      {/* Header */}
+      <div className="text-center mb-24 pt-16">
+        {/* 1. 상단 수직 선 애니메이션 */}
+        <div className="flex flex-col items-center mb-10">
+          <motion.div
+            initial={{ height: 0 }}
+            animate={{ height: 48 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="w-[1px] bg-[#1C352D]/40 mb-6"
+          />
+          <div className="overflow-hidden">
+            <motion.span
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-[#1C352D] text-xs tracking-[0.4em] font-medium uppercase block"
+            >
+              Works Archive
+            </motion.span>
+          </div>
         </div>
 
-        {/* Care Tips */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        {/* 2. 제목: 슬라이드 업 효과 */}
+        <div className="overflow-hidden mb-8">
+          <motion.h1
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.33, 1, 0.68, 1] }}
+            className="text-4xl md:text-5xl font-extralight text-[#4A4540] tracking-tight"
+          >
+            가구 관리 방법
+          </motion.h1>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6">
+        {/* 2. Care Tips Card: 카드 내부 폰트 가독성 보정 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-32">
           {tips.map((tip, index) => (
             <motion.div
               key={tip.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white p-6 rounded-lg border border-gray-200"
+              className="bg-white p-10 rounded-sm shadow-sm border border-gray-100"
             >
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-900 text-white rounded-full mb-4">
-                <tip.icon size={24} />
+              <div className="w-12 h-12 bg-[#F9F6F3] text-[#1C352D] rounded-full flex items-center justify-center mb-6">
+                <tip.icon size={22} strokeWidth={1.5} />
               </div>
-              <h3 className="text-xl mb-3">{tip.title}</h3>
-              <p className="text-gray-600 mb-4">{tip.description}</p>
+              <h3 className="text-xl font-medium text-[#4A4540] mb-4">{tip.title}</h3>
+              <p className="text-gray-600 font-normal leading-relaxed mb-8 break-keep text-[15px]">{tip.description}</p>
 
-              <div className="space-y-4">
-                <div>
-                  <h4 className="text-sm mb-2 text-green-700">✓ 권장사항</h4>
-                  <ul className="space-y-1 text-sm">
+              <div className="space-y-6 pt-6 border-t border-gray-50">
+                {/* 권장 사항 (Dos) */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-1.5 h-1.5 bg-[#1C352D] rounded-full" />
+                    <span className="text-sm font-bold text-[#1C352D] tracking-tight">권장 사항</span>
+                  </div>
+                  <ul className="space-y-2 text-[14px] text-gray-800 font-medium">
                     {tip.dos.map((item, idx) => (
-                      <li key={idx} className="text-gray-600">
-                        • {item}
+                      <li key={idx} className="flex items-center pl-3">
+                        <span className="w-1 h-px bg-[#1C352D]/30 mr-2" />
+                        {item}
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div>
-                  <h4 className="text-sm mb-2 text-red-700">✗ 주의사항</h4>
-                  <ul className="space-y-1 text-sm">
+
+                {/* 주의 사항 (Don'ts) */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-1.5 h-1.5 bg-[#A44540] rounded-full" />
+                    <span className="text-sm font-bold text-[#A44540] tracking-tight">주의 사항</span>
+                  </div>
+                  <ul className="space-y-2 text-[14px] text-gray-800 font-medium">
                     {tip.donts.map((item, idx) => (
-                      <li key={idx} className="text-gray-600">
-                        • {item}
+                      <li key={idx} className="flex items-center pl-3">
+                        <span className="w-1 h-px bg-[#A44540]/30 mr-2" />
+                        {item}
                       </li>
                     ))}
                   </ul>
@@ -106,68 +118,25 @@ export function FurnitureCare() {
           ))}
         </div>
 
-        {/* Cleaning Guide */}
+        {/* 3. 현장 안내 및 통합 연락처 섹션: 폰트 크기 및 굵기 하향 조정 */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="bg-white border border-gray-100 p-12 text-center rounded-sm shadow-sm"
         >
-          <h2 className="text-3xl mb-8 text-center">청소 및 관리 가이드</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {cleaning.map((item, index) => (
-              <div
-                key={index}
-                className="bg-gray-50 p-6 rounded-lg text-center"
-              >
-                <div className="text-2xl mb-2">{index + 1}</div>
-                <h4 className="text-lg mb-2">{item.step}</h4>
-                <p className="text-gray-600 text-sm mb-3">{item.method}</p>
-                <div className="text-xs text-gray-500">{item.frequency}</div>
-              </div>
-            ))}
+          <div className="flex flex-col items-center">
+            <div className="w-10 h-px bg-[#1C352D] mb-8 opacity-40" />
+            <h3 className="text-2xl font-light text-[#4A4540] mb-6">현장 케어 가이드 안내</h3>
+            <p className="text-base md:text-lg text-gray-600 font-light leading-relaxed break-keep max-w-3xl mb-12">
+              원목 가구는 배송되는 공간의 환경에 따라 관리 방법이 달라질 수 있습니다. 포커스온우드는{" "}
+              <span className="text-[#1C352D] font-normal">
+                배송 현장에서 공간의 특성을 고려한 상세한 관리 방법과 주의사항을 직접 설명
+              </span>
+              해 드리고 있습니다.
+            </p>
           </div>
         </motion.div>
-
-        {/* Important Notes */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-amber-50 border border-amber-200 p-8 rounded-lg"
-        >
-          <div className="flex items-start space-x-4">
-            <AlertCircle className="text-amber-600 flex-shrink-0 mt-1" size={24} />
-            <div>
-              <h3 className="text-xl mb-4">중요 안내사항</h3>
-              <div className="space-y-3 text-gray-700">
-                <p>
-                  • 원목은 살아있는 자연 소재입니다. 시간이 지남에 따라 색상이
-                  변하거나 미세한 갈라짐이 발생할 수 있으며, 이는 자연스러운
-                  현상입니다.
-                </p>
-                <p>
-                  • 화학 세제나 연마제는 가구 표면을 손상시킬 수 있으니 사용하지
-                  마세요.
-                </p>
-                <p>
-                  • 뜨거운 물건을 직접 올려놓지 말고 받침대나 매트를 사용해주세요.
-                </p>
-                <p>
-                  • 날카로운 물건으로 인한 흠집이 생기지 않도록 주의해주세요.
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Contact */}
-        <div className="mt-12 text-center">
-          <p className="text-gray-600">
-            관리 방법에 대해 궁금한 점이 있으시면 언제든지 문의해주세요.
-          </p>
-          <p className="text-gray-600">전화: 02-1234-5678 | 이메일: info@namugyeol.kr</p>
-        </div>
       </div>
     </div>
   );

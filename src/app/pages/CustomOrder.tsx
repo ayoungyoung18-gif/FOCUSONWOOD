@@ -81,61 +81,96 @@ export function CustomOrder() {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1760939858984-5dc76f0ea34a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b29kZW4lMjBmdXJuaXR1cmUlMjB3b3Jrc2hvcCUyMGNyYWZ0c21hbnxlbnwxfHx8fDE3NzYzMDIwMjh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-            alt="맞춤 제작"
-            className="w-full h-full object-cover"
+      {/* Header */}
+      <div className="text-center mb-24 pt-16">
+        {/* 1. 상단 수직 선 애니메이션 */}
+        <div className="flex flex-col items-center mb-10">
+          <motion.div
+            initial={{ height: 0 }}
+            animate={{ height: 48 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="w-[1px] bg-[#1C352D]/40 mb-6"
           />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 text-center text-white px-4"
-        >
-          <h1 className="text-5xl md:text-6xl mb-4">맞춤 제작 의뢰</h1>
-          <p className="text-xl text-gray-200">공간과 라이프스타일에 딱 맞는 가구를 제작합니다</p>
-        </motion.div>
-      </section>
-
-      {/* Process */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl mb-4">제작 과정</h2>
-            <p className="text-xl text-gray-600">상담부터 배송까지, 체계적인 프로세스로 진행됩니다</p>
+          <div className="overflow-hidden">
+            <motion.span
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-[#1C352D] text-xs tracking-[0.4em] font-medium uppercase block"
+            >
+              Works Archive
+            </motion.span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        </div>
+
+        {/* 2. 제목: 슬라이드 업 효과 */}
+        <div className="overflow-hidden mb-8">
+          <motion.h1
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.33, 1, 0.68, 1] }}
+            className="text-4xl md:text-5xl font-extralight text-[#4A4540] tracking-tight"
+          >
+            맞춤가구 제작문의
+          </motion.h1>
+        </div>
+
+        {/* 3. 설명문: 부드러운 페이드 인 */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+        >
+          <p className="text-base md:text-lg text-gray-500 font-light leading-relaxed max-w-2xl mx-auto break-keep opacity-80">
+            아래 양식을 작성해주시면 빠른 시일 내에 연락드리겠습니다
+          </p>
+        </motion.div>
+      </div>
+      {/* Process Section - 심플한 가로 한 줄 버전 */}
+      <section className="py-20 bg-[#F9F6F3]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-light text-[#4A4540] mb-4">제작 과정</h2>
+            <div className="w-12 h-[1px] bg-[#1C352D] mx-auto" />
+          </div>
+
+          {/* 가로 흐름 컨테이너 */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 relative">
+            {/* 배경 연결선 (데스크탑용) */}
+            <div className="hidden lg:block absolute top-7 left-0 w-full h-[1px] bg-gray-200 z-0" />
+
             {process.map((step, index) => (
               <motion.div
                 key={step.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white p-6 rounded-lg"
+                className="relative z-10 text-center flex flex-col items-center"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-900 text-white rounded-full mb-4">
-                  <step.icon size={24} />
+                {/* 아이콘 원형 */}
+                <div className="w-14 h-14 bg-white border border-gray-100 rounded-full flex items-center justify-center mb-4 shadow-sm text-[#1C352D] group-hover:bg-[#1C352D] transition-colors">
+                  <step.icon size={22} strokeWidth={1.5} />
                 </div>
-                <h3 className="text-xl mb-2">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
+
+                {/* 텍스트 */}
+                <span className="text-[10px] text-[#1C352D] font-bold tracking-tighter mb-1 block">
+                  STEP 0{index + 1}
+                </span>
+                <h3 className="text-base font-medium text-[#4A4540] mb-2">{step.title.split(". ")[1]}</h3>
+                <p className="text-xs text-gray-500 leading-tight break-keep px-2">{step.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
-
       {/* Order Form */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl mb-4">의뢰서 작성</h2>
+          {/* <div className="text-center mb-12">
+            <h2 className="text-4xl mb-4">제작 문의</h2>
             <p className="text-xl text-gray-600">아래 양식을 작성해주시면 빠른 시일 내에 연락드리겠습니다</p>
-          </div>
+          </div> */}
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -277,14 +312,28 @@ export function CustomOrder() {
             </div>
 
             <button
-              type="submit"
               disabled={submitted}
-              className={`w-full py-4 rounded-lg transition-colors text-lg ${
-                submitted ? "bg-green-600 text-white" : "bg-gray-900 text-white hover:bg-gray-800"
+              className={`px-8 py-3 rounded-sm transition-colors ${
+                submitted
+                  ? "bg-[#4A4540] text-[#F9F6F3] cursor-default" // ✅ 클릭해서 제출된 후의 색상 (예: 진한 브라운)
+                  : "bg-[#1C352D] text-[#F9F6F3] hover:bg-[#2a4d42] active:scale-[0.98]" // ✅ 기본 색상
               }`}
             >
-              {submitted ? "의뢰서가 접수되었습니다" : "의뢰서 제출하기"}
+              {submitted ? "문의가 접수되었습니다" : "제작 문의 보내기"}
             </button>
+            {/* --- 여기부터 추가/교체하세요 --- */}
+            <div className="pt-4">
+              {submitted && (
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center text-sm text-gray-500 mt-4"
+                >
+                  확인 후 빠른 시일 내에 연락드리겠습니다.
+                </motion.p>
+              )}
+            </div>
+            {/* --- 여기까지 --- */}
           </form>
 
           <p className="text-sm text-gray-500 text-center mt-6">

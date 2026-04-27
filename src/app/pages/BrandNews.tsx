@@ -93,9 +93,50 @@ export function BrandNews() {
   return (
     <div className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-[#1C352D] mb-6">포커스온우드 이야기</h1>
-          <p className="text-lg text-gray-600">포커스온우드의 발자취와 소중한 기록들을 담았습니다.</p>
+        {/* Header - 정갈한 레이아웃 + 슬라이드 애니메이션 */}
+        <div className="text-center mb-24 pt-16">
+          {/* 1. 상단 수직 선 애니메이션 */}
+          <div className="flex flex-col items-center mb-10">
+            <motion.div
+              initial={{ height: 0 }}
+              animate={{ height: 48 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              className="w-[1px] bg-[#1C352D]/40 mb-6"
+            />
+            <div className="overflow-hidden">
+              <motion.span
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-[#1C352D] text-xs tracking-[0.4em] font-medium uppercase block"
+              >
+                Works Archive
+              </motion.span>
+            </div>
+          </div>
+
+          {/* 2. 제목: 슬라이드 업 효과 (쌍용건설 스타일 모션) */}
+          <div className="overflow-hidden mb-8">
+            <motion.h1
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: [0.33, 1, 0.68, 1] }}
+              className="text-4xl md:text-5xl font-extralight text-[#4A4540] tracking-tight"
+            >
+              포커스온우드 이야기
+            </motion.h1>
+          </div>
+
+          {/* 3. 설명문: 부드러운 페이드 인 */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+          >
+            <p className="text-base md:text-lg text-gray-500 font-light leading-relaxed max-w-2xl mx-auto break-keep opacity-80">
+              포커스온우드의 발자취와 소중한 기록들을 담았습니다
+            </p>
+          </motion.div>
         </div>
 
         {/* 그리드 영역 */}

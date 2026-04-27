@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TreePine, Award, Heart, Users, Calendar, ChevronRight, ChevronLeft } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { newsData } from "../../data/newsData";
+import { Volume2, VolumeX, Play, Pause } from "lucide-react"; // 아이콘 라이브러리 사용 시
 
 export function BrandStory() {
   // 1. 페이지네이션을 위한 상태와 변수 정의
@@ -41,64 +42,64 @@ export function BrandStory() {
     setCurrentPage(pageNumber);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  // 컴포넌트 함수 시작 부분
+  const videoRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
 
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) videoRef.current.pause();
+      else videoRef.current.play();
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  };
   return (
-    <div>
-      {/* Hero Section */}
-      {/* Hero Section: 비디오 배경 적용 */}
-      <section className="relative w-full h-screen overflow-hidden bg-black flex items-center justify-center">
-        {/* 비디오 레이어 */}
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay={false} // 소리가 나려면 자동재생 대신 사용자가 틀게 하는 것이 안전함
-            controls // 사용자가 볼륨 조절 및 재생을 할 수 있게 바(bar) 노출
-            loop
-            playsInline
-            className="w-full h-full object-contain bg-black" // 비디오 전체 비율이 다 나오도록 contain 설정
-          >
-            {/* 홈 화면과 같은 영상 혹은 다른 브랜드 영상 경로 */}
-            <source src="/videos/philosophy.mp4" type="video/mp4" />
-            브라우저가 비디오를 지원하지 않습니다.
-          </video>
-          {/* 어두운 그라데이션 오버레이: 글자를 더 선명하게 만듦 */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/30" />
+    <div className="bg-[#F9F6F3]">
+      {" "}
+      {/* 전체 바탕색 통일 */}
+      {/* 1. Header: 브랜드 아이덴티티를 보여주는 슬라이드 애니메이션 */}
+      <header className="text-center mb-12 pt-24 bg-[#F9F6F3]">
+        <div className="flex flex-col items-center mb-10">
+          <motion.div
+            initial={{ height: 0 }}
+            animate={{ height: 48 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="w-[1px] bg-[#1C352D]/40 mb-6"
+          />
+          <div className="overflow-hidden">
+            <motion.span
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-[#1C352D] text-xs tracking-[0.4em] font-medium uppercase block"
+            >
+              Philosophy
+            </motion.span>
+          </div>
         </div>
 
-        {/* 중앙 텍스트 콘텐츠
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 text-center text-white px-4"
-        >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 font-light tracking-tight">소중한 일상을 채우는 깊이</h1>
-          <p className="text-lg md:text-xl text-gray-200 font-light max-w-2xl mx-auto break-keep">
-            시간이 흐를수록 나무의 가치가 깊어지는 가구를 만듭니다.
-          </p>
-        </motion.div> */}
-
-        {/* 스크롤 유도 아이콘 (선택 사항) */}
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-white/50"
-        >
-          <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent mx-auto" />
-        </motion.div>
-      </section>
-
-      {/* Story Section */}
+        <div className="overflow-hidden mb-8">
+          <motion.h1
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.33, 1, 0.68, 1] }}
+            className="text-4xl md:text-5xl font-extralight text-[#4A4540] tracking-tight"
+          >
+            포커스온우드의 철학
+          </motion.h1>
+        </div>
+      </header>
+      {/* 2. Story Section: 짙은 베이지 배경으로 시선 집중 */}
       <section className="py-24 bg-[#DED8D1]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-normal tracking-wide text-[#4A4540]">포커스온우드의 철학</h2>
-          </motion.div>
-
           <div className="text-center mb-20 italic text-[#4A4540]/80 font-light leading-loose text-lg">
             <p>공간에는 각자의 이야기가 있습니다.</p>
             <p>시간이 지나도 변하지 않는 디자인이 머무는 공간,</p>
@@ -120,12 +121,47 @@ export function BrandStory() {
           </div>
         </div>
       </section>
+      {/* 3. Video Section: 제작 과정을 보여주는 영상 콘텐츠 */}
+      <section className="py-24 bg-[#F9F6F3]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative group overflow-hidden rounded-sm shadow-xl aspect-video bg-black">
+            <video ref={videoRef} autoPlay muted loop playsInline className="w-full h-full object-cover">
+              <source src="/videos/philosophy.mp4" type="video/mp4" />
+            </video>
 
-      {/* Values Section */}
-      <section className="py-20 bg-[#F9F6F3]">
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors pointer-events-none" />
+
+            <div className="absolute bottom-6 left-6 z-20 flex gap-3">
+              <button
+                onClick={togglePlay}
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/30 text-white backdrop-blur-md hover:bg-white/20 transition-all"
+              >
+                {isPlaying ? (
+                  <Pause size={18} fill="currentColor" />
+                ) : (
+                  <Play size={18} fill="currentColor" className="ml-0.5" />
+                )}
+              </button>
+              <button
+                onClick={toggleMute}
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/30 text-white backdrop-blur-md hover:bg-white/20 transition-all"
+              >
+                {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+              </button>
+            </div>
+          </div>
+          <p className="mt-6 text-center text-[#1C352D] font-light text-xs tracking-widest uppercase opacity-60">
+            The Spirit of Craftsmanship
+          </p>
+        </div>
+      </section>
+      {/* 4. Values Section: 핵심 가치 4가지 */}
+      <section className="py-24 bg-white">
+        {" "}
+        {/* 구분을 위해 배경을 흰색으로 변경 */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-[#1C352D] mb-4">포커스온우드의 가치</h2>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-light text-[#4A4540]">포커스온우드의 가치</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
@@ -135,27 +171,27 @@ export function BrandStory() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white p-8 rounded-sm text-center shadow-sm"
+                className="bg-[#F9F6F3] p-10 rounded-sm text-center transition-transform hover:-translate-y-1"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-[#1C352D] text-white rounded-full mb-6">
-                  <value.icon size={28} />
+                <div className="inline-flex items-center justify-center w-14 h-14 bg-[#1C352D] text-white rounded-full mb-6">
+                  <value.icon size={24} />
                 </div>
-                <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{value.description}</p>
+                <h3 className="text-lg font-medium mb-4 text-[#4A4540]">{value.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed break-keep">{value.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Vision Section */}
-      <section className="py-24 bg-[#DED8D1]">
+      {/* 5. Vision Section: 마지막 마무리 메시지 */}
+      <section className="py-32 bg-[#DED8D1]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-3xl md:text-4xl mb-10 font-normal text-[#4A4540]">포커스온우드의 비전</h2>
-            <p className="text-lg text-gray-700 leading-relaxed break-keep">
-              포커스온우드는 단순히 가구를 만드는 것을 넘어, <strong>나무가 가진 본연의 온기와 생명력</strong>을 당신의
-              삶에 전하고자 합니다. 우리가 정성껏 깎고 다듬은 나무가 누군가의 소중한 일상에서 함께 호흡하며,{" "}
+            <h2 className="text-3xl font-light mb-12 text-[#4A4540]">포커스온우드의 비전</h2>
+            <p className="text-lg text-gray-700 leading-loose break-keep font-light">
+              포커스온우드는 단순히 가구를 만드는 것을 넘어, <br />
+              <strong>나무가 가진 본연의 온기와 생명력</strong>을 당신의 삶에 전하고자 합니다. <br />
+              우리가 정성껏 깎고 다듬은 나무가 누군가의 소중한 일상에서 함께 호흡하며, <br />
               <strong>시간이 흐를수록 깊어지는 나무의 가치</strong>를 경험하시길 바랍니다.
             </p>
           </motion.div>

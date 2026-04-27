@@ -104,26 +104,76 @@ export function Shop() {
   return (
     <div className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl mb-4 font-bold text-[#1C352D]">소품</h1>
-          <p className="text-xl text-gray-600">일상을 더욱 특별하게 만드는 원목 소품들</p>
-        </div>
+        {/* Header */}
+        <div className="text-center mb-24 pt-16">
+          {/* 1. 상단 수직 선 애니메이션 */}
+          <div className="flex flex-col items-center mb-10">
+            <motion.div
+              initial={{ height: 0 }}
+              animate={{ height: 48 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              className="w-[1px] bg-[#1C352D]/40 mb-6"
+            />
+            <div className="overflow-hidden">
+              <motion.span
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-[#1C352D] text-xs tracking-[0.4em] font-medium uppercase block"
+              >
+                Works Archive
+              </motion.span>
+            </div>
+          </div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => handleCategoryChange(category.id)}
-              className={`px-6 py-2 rounded-full transition-all ${
-                activeCategory === category.id
-                  ? "bg-[#1C352D] text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
+          {/* 2. 제목: 슬라이드 업 효과 */}
+          <div className="overflow-hidden mb-8">
+            <motion.h1
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: [0.33, 1, 0.68, 1] }}
+              className="text-4xl md:text-5xl font-extralight text-[#4A4540] tracking-tight"
             >
-              {category.label}
-            </button>
-          ))}
+              소품
+            </motion.h1>
+          </div>
+
+          {/* 3. 설명문: 부드러운 페이드 인 */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+          >
+            <p className="text-base md:text-lg text-gray-500 font-light leading-relaxed max-w-2xl mx-auto break-keep opacity-80">
+              일상을 더욱 특별하게 만드는 원목 소품들
+            </p>
+          </motion.div>
+        </div>
+        {/* Category Filter */}
+        <div className="flex justify-center mb-20">
+          <div className="flex flex-wrap justify-center gap-x-8 md:gap-x-12 border-b border-gray-100 w-full max-w-4xl px-4">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`relative py-5 text-sm md:text-base tracking-[0.2em] transition-all duration-300 ${
+                  activeCategory === category.id ? "text-[#1C352D] font-bold" : "text-gray-400 hover:text-[#4A4540]"
+                }`}
+              >
+                {/* 카테고리 이름 */}
+                <span className="relative z-10">{category.label}</span>
+
+                {/* 활성화 상태일 때 밑줄 (쌍용건설 스타일의 매끄러운 이동 효과) */}
+                {activeCategory === category.id && (
+                  <motion.div
+                    layoutId="activeCategoryLine"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#1C352D] z-20"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Products Grid */}
