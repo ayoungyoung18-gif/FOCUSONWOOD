@@ -9,19 +9,23 @@ import { LoginModal } from "./LoginModal";
 
 export function Header() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // 모바일 메뉴 상태
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const location = useLocation();
   const { totalItems } = useCart();
   const { isAuthenticated, user, logout } = useAuth();
 
+  // 페이지 이동 시 모바일 메뉴 닫기
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
   useEffect(() => {
     const handleMouseMove = () => {
       setIsVisible(true);
       window.removeEventListener("mousemove", handleMouseMove);
     };
-
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
@@ -57,7 +61,7 @@ export function Header() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 transform ${
-          isVisible
+          isVisible || isMenuOpen
             ? "translate-y-0 bg-[#F1EDE8]/95 backdrop-blur-md shadow-sm border-b border-[#1A2F28]/10"
             : "-translate-y-full bg-transparent"
         }`}
@@ -74,7 +78,6 @@ export function Header() {
               {navItems.map((item) =>
                 "subItems" in item ? (
                   <div key={item.label} className="relative group">
-                    {/* 하위 메뉴가 있음을 알리는 ChevronDown 아이콘 추가 */}
                     <button className="flex items-center gap-1 px-2 py-1 text-[#1A2F28] group-hover:text-[#D4A373] transition-colors cursor-pointer font-medium">
                       {item.label}
                       <ChevronDown
@@ -82,17 +85,13 @@ export function Header() {
                         className="transition-transform duration-300 group-hover:rotate-180 opacity-40 group-hover:opacity-100"
                       />
                     </button>
-
-                    {/* 서브메뉴: 슬라이드 다운 효과 추가 */}
                     <div className="absolute left-0 top-full pt-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out">
                       <div className="bg-[#F1EDE8] shadow-xl rounded-xl py-2 min-w-[180px] border border-[#1A2F28]/5 overflow-hidden">
                         {item.subItems.map((subItem) => (
                           <Link
                             key={subItem.path}
                             to={subItem.path}
-                            className={`block px-5 py-2.5 hover:bg-[#1A2F28]/5 transition-colors cursor-pointer text-sm ${
-                              isActive(subItem.path) ? "text-[#D4A373] font-semibold" : "text-[#1A2F28]"
-                            }`}
+                            className={`block px-5 py-2.5 hover:bg-[#1A2F28]/5 transition-colors text-sm ${isActive(subItem.path) ? "text-[#D4A373] font-semibold" : "text-[#1A2F28]"}`}
                           >
                             {subItem.label}
                           </Link>
@@ -104,9 +103,7 @@ export function Header() {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`px-2 py-1 transition-colors cursor-pointer font-medium ${
-                      isActive(item.path) ? "text-[#D4A373]" : "text-[#1A2F28] hover:text-[#D4A373]"
-                    }`}
+                    className={`px-2 py-1 transition-colors font-medium ${isActive(item.path) ? "text-[#D4A373]" : "text-[#1A2F28] hover:text-[#D4A373]"}`}
                   >
                     {item.label}
                   </Link>
@@ -118,43 +115,17 @@ export function Header() {
             <div className="flex items-center space-x-4 text-[#1A2F28]">
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 hover:bg-[#1A2F28]/5 rounded-full transition-colors cursor-pointer"
+                className="p-2 hover:bg-[#1A2F28]/5 rounded-full cursor-pointer"
               >
                 <Search size={20} />
               </button>
-
-              {isAuthenticated ? (
-                <div className="relative group">
-                  <button className="p-2 hover:bg-[#1A2F28]/5 rounded-full transition-colors cursor-pointer">
-                    <User size={20} />
-                  </button>
-                  <div className="absolute right-0 top-full pt-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out">
-                    <div className="bg-[#F1EDE8] shadow-xl rounded-xl py-2 min-w-[150px] border border-[#1A2F28]/5">
-                      <div className="px-4 py-2 border-b border-[#1A2F28]/5">
-                        <p className="text-sm font-medium">{user?.name}님</p>
-                      </div>
-                      <button
-                        onClick={logout}
-                        className="block w-full text-left px-4 py-2 hover:bg-[#1A2F28]/5 text-sm cursor-pointer"
-                      >
-                        로그아웃
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <button
-                  onClick={() => setIsLoginOpen(true)}
-                  className="p-2 hover:bg-[#1A2F28]/5 rounded-full transition-colors cursor-pointer"
-                >
-                  <User size={20} />
-                </button>
-              )}
-
-              <Link
-                to="/cart"
-                className="relative p-2 hover:bg-[#1A2F28]/5 rounded-full transition-colors cursor-pointer"
+              <button
+                onClick={() => setIsLoginOpen(true)}
+                className="p-2 hover:bg-[#1A2F28]/5 rounded-full cursor-pointer"
               >
+                <User size={20} />
+              </button>
+              <Link to="/cart" className="relative p-2 hover:bg-[#1A2F28]/5 rounded-full cursor-pointer">
                 <ShoppingCart size={20} />
                 {totalItems > 0 && (
                   <span className="absolute -top-1 -right-1 bg-[#D4A373] text-[#1A2F28] text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">
@@ -162,13 +133,50 @@ export function Header() {
                   </span>
                 )}
               </Link>
-
-              <button className="lg:hidden p-2 cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {/* 모바일 햄버거 버튼 */}
+              <button className="lg:hidden p-2 cursor-pointer z-50" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
           </div>
         </nav>
+
+        {/* 🟢 모바일 메뉴 영역 추가 */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden bg-[#F1EDE8] border-t border-[#1A2F28]/10 overflow-hidden"
+            >
+              <div className="px-6 py-8 space-y-6">
+                {navItems.map((item) => (
+                  <div key={item.label} className="space-y-4">
+                    {"subItems" in item ? (
+                      <>
+                        <div className="text-xs tracking-[0.2em] text-[#1A2F28]/40 font-bold uppercase">
+                          {item.label}
+                        </div>
+                        <div className="grid grid-cols-1 gap-4 pl-2">
+                          {item.subItems.map((sub) => (
+                            <Link key={sub.path} to={sub.path} className="text-lg text-[#1A2F28] font-light">
+                              {sub.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </>
+                    ) : (
+                      <Link to={item.path} className="block text-xl text-[#1A2F28] font-medium">
+                        {item.label}
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
