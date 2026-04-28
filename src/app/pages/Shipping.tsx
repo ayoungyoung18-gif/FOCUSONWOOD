@@ -31,7 +31,7 @@ export function Shipping() {
 
   const process = [
     { step: "주문 접수", description: "상담 완료 후 제작 시작" },
-    { step: "정성 제작", description: "나무 선별 및 가공 조립" },
+    { step: "제작 과정", description: "나무 선별 및 가공 조립" },
     { step: "품질 검수", description: "최종 마감 및 검수 작업" },
     { step: "일정 조율", description: "배송 일시 해피콜 안내" },
     { step: "안전 배송", description: "공간 맞춤 설치 및 설명" },

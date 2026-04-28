@@ -1,14 +1,14 @@
 import { Link, useLocation } from "react-router";
-import { Menu, X, Search, ShoppingCart, User } from "lucide-react";
+import { Menu, X, Search, ShoppingCart, User, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import { SearchModal } from "./SearchModal";
 import { LoginModal } from "./LoginModal";
 
 export function Header() {
-  const [isVisible, setIsVisible] = useState(false); // 마우스 이동 시 헤더 노출 상태
+  const [isVisible, setIsVisible] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -18,7 +18,6 @@ export function Header() {
 
   useEffect(() => {
     const handleMouseMove = () => {
-      // 마우스를 한 번이라도 움직이면 헤더 노출 후 유지
       setIsVisible(true);
       window.removeEventListener("mousemove", handleMouseMove);
     };
@@ -75,17 +74,24 @@ export function Header() {
               {navItems.map((item) =>
                 "subItems" in item ? (
                   <div key={item.label} className="relative group">
-                    <button className="px-2 py-1 text-[#1A2F28] hover:text-[#D4A373] transition-colors cursor-pointer font-medium">
+                    {/* 하위 메뉴가 있음을 알리는 ChevronDown 아이콘 추가 */}
+                    <button className="flex items-center gap-1 px-2 py-1 text-[#1A2F28] group-hover:text-[#D4A373] transition-colors cursor-pointer font-medium">
                       {item.label}
+                      <ChevronDown
+                        size={14}
+                        className="transition-transform duration-300 group-hover:rotate-180 opacity-40 group-hover:opacity-100"
+                      />
                     </button>
-                    <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                      <div className="bg-[#F1EDE8] shadow-xl rounded-xl py-2 min-w-[180px] border border-[#1A2F28]/5">
+
+                    {/* 서브메뉴: 슬라이드 다운 효과 추가 */}
+                    <div className="absolute left-0 top-full pt-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out">
+                      <div className="bg-[#F1EDE8] shadow-xl rounded-xl py-2 min-w-[180px] border border-[#1A2F28]/5 overflow-hidden">
                         {item.subItems.map((subItem) => (
                           <Link
                             key={subItem.path}
                             to={subItem.path}
-                            className={`block px-4 py-2 hover:bg-[#1A2F28]/5 transition-colors cursor-pointer ${
-                              isActive(subItem.path) ? "text-[#D4A373]" : "text-[#1A2F28]"
+                            className={`block px-5 py-2.5 hover:bg-[#1A2F28]/5 transition-colors cursor-pointer text-sm ${
+                              isActive(subItem.path) ? "text-[#D4A373] font-semibold" : "text-[#1A2F28]"
                             }`}
                           >
                             {subItem.label}
@@ -122,7 +128,7 @@ export function Header() {
                   <button className="p-2 hover:bg-[#1A2F28]/5 rounded-full transition-colors cursor-pointer">
                     <User size={20} />
                   </button>
-                  <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="absolute right-0 top-full pt-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out">
                     <div className="bg-[#F1EDE8] shadow-xl rounded-xl py-2 min-w-[150px] border border-[#1A2F28]/5">
                       <div className="px-4 py-2 border-b border-[#1A2F28]/5">
                         <p className="text-sm font-medium">{user?.name}님</p>

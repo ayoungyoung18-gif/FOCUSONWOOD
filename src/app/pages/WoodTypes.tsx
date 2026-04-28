@@ -70,21 +70,6 @@ export function WoodTypes() {
           <span className="text-[#1C352D] text-xs tracking-[0.4em] uppercase block">Materials Archive</span>
         </div>
         <h1 className="text-4xl font-extralight text-[#4A4540] mb-12">나무의 종류</h1>
-
-        <button
-          onClick={() => setViewMode(viewMode === "list" ? "spread" : "list")}
-          className="inline-flex items-center gap-2 px-6 py-2 border border-[#1C352D]/20 rounded-full text-[#1C352D] text-xs tracking-widest hover:bg-[#1C352D] hover:text-white transition-all z-50 relative"
-        >
-          {viewMode === "list" ? (
-            <>
-              <Layers size={14} /> 갤러리 보기
-            </>
-          ) : (
-            <>
-              <LayoutGrid size={14} /> 모두 보기
-            </>
-          )}
-        </button>
       </header>
 
       <div className="max-w-7xl mx-auto px-6">
@@ -216,6 +201,23 @@ export function WoodTypes() {
             ))}
           </div>
         )}
+        {/* 목록 섹션이 끝나는 지점 */}
+        <div className="flex justify-center mt-12 mb-8">
+          <button
+            onClick={() => setViewMode(viewMode === "list" ? "spread" : "list")}
+            className="inline-flex items-center gap-2 px-6 py-2 border border-[#1C352D]/20 rounded-full text-[#1C352D] text-xs tracking-widest hover:bg-[#1C352D] hover:text-white transition-all z-50 relative"
+          >
+            {viewMode === "list" ? (
+              <>
+                <Layers size={14} /> 갤러리 보기
+              </>
+            ) : (
+              <>
+                <LayoutGrid size={14} /> 모두 보기
+              </>
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );

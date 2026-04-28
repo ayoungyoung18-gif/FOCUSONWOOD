@@ -1,8 +1,8 @@
-import { useParams, Link } from 'react-router';
-import { ArrowLeft, ShoppingCart, Check } from 'lucide-react';
-import { useState } from 'react';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { useCart } from '../context/CartContext';
+import { useParams, Link } from "react-router";
+import { ArrowLeft, ShoppingCart, Check } from "lucide-react";
+import { useState } from "react";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { useCart } from "../context/CartContext";
 
 export function ProductDetail() {
   const { id } = useParams();
@@ -13,18 +13,18 @@ export function ProductDetail() {
   // Mock product data - in real app, this would fetch from API
   const product = {
     id: Number(id),
-    name: '원목 도마 (대)',
-    price: 45000,
-    material: '참나무',
-    size: '40cm x 25cm x 2cm',
-    image: 'https://images.unsplash.com/photo-1768039049578-8b3d5cc4e8db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b29kZW4lMjBjdXR0aW5nJTIwYm9hcmQlMjBraXRjaGVuJTIwYWNjZXNzb3JpZXN8ZW58MXx8fHwxNzc2MzAyMDMwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    name: "보드기(나무로봇키링)",
+    price: 50000,
+    material: "월넛 / 오크 / 메이플 (천연 원목)",
+    size: "약 40mm x 25mm x 20mm (수작업 특성상 미세 차이 발생)",
+    image: "/images/accessories.jpg",
     description:
-      '고급 참나무로 제작한 도마입니다. 항균 효과가 뛰어나며 내구성이 좋아 오래 사용하실 수 있습니다. 자연스러운 나무결이 주방을 더욱 따뜻하게 만들어줍니다.',
+      "포커스온우드의 마스코트 '보드기'는 정밀한 목공 기술과 위트 있는 디자인이 결합된 핸드메이드 로봇 키링입니다. 각기 다른 수종의 나무를 섬세하게 결합하여 제작되었으며, 시간이 흐를수록 손때가 묻어 깊어지는 원목 특유의 질감을 일상 속에서 즐기실 수 있습니다. 가방이나 차 키에 감성을 더해주는 특별한 오브제가 되어줄 것입니다.",
     features: [
-      '100% 천연 참나무 원목',
-      '친환경 오일 마감',
-      '항균 효과',
-      '손잡이 홈 디자인',
+      "취향에 따라 선택 가능한 프리미엄 원목 (월넛/메이플/오크)",
+      "장인의 정교한 조립으로 완성된 입체적인 로봇 디자인",
+      "친환경 천연 오일 마감으로 인체에 무해하며 부드러운 촉감",
+      "내구성이 뛰어난 프리미엄 황동 키링 고리 사용",
     ],
   };
 
@@ -45,10 +45,7 @@ export function ProductDetail() {
     <div className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
-        <Link
-          to="/shop"
-          className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-8"
-        >
+        <Link to="/shop" className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-8">
           <ArrowLeft size={20} />
           <span>쇼핑몰로 돌아가기</span>
         </Link>
@@ -56,11 +53,7 @@ export function ProductDetail() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Image */}
           <div className="aspect-square rounded-lg overflow-hidden">
-            <ImageWithFallback
-              src={product.image}
-              alt={product.name}
-              className="w-full h-full object-cover"
-            />
+            <ImageWithFallback src={product.image} alt={product.name} className="w-full h-full object-cover" />
           </div>
 
           {/* Product Info */}
@@ -79,9 +72,7 @@ export function ProductDetail() {
               </div>
             </div>
 
-            <p className="text-gray-700 leading-relaxed mb-6">
-              {product.description}
-            </p>
+            <p className="text-gray-700 leading-relaxed mb-6">{product.description}</p>
 
             <div className="mb-8">
               <h3 className="text-lg mb-3">제품 특징</h3>
@@ -118,20 +109,19 @@ export function ProductDetail() {
             {/* Add to Cart Button */}
             <button
               onClick={handleAddToCart}
-              className={`w-full flex items-center justify-center space-x-2 py-4 rounded-lg transition-colors ${
-                added
-                  ? 'bg-green-600 text-white'
-                  : 'bg-gray-900 text-white hover:bg-gray-800'
+              style={{ cursor: "pointer" }} // 🟢 강제로 손가락 커서 적용
+              className={`w-full flex items-center justify-center space-x-2 py-4 rounded-lg transition-all duration-300 cursor-pointe ${
+                added ? "bg-[#3E3A36] text-[#F9F6F3] shadow-inner" : "bg-[#1C352D] text-[#F9F6F3] hover:bg-[#2A4A3F]"
               }`}
             >
               {added ? (
                 <>
-                  <Check size={20} />
+                  <Check size={18} />
                   <span>장바구니에 담았습니다</span>
                 </>
               ) : (
                 <>
-                  <ShoppingCart size={20} />
+                  <ShoppingCart size={18} />
                   <span>장바구니 담기</span>
                 </>
               )}
