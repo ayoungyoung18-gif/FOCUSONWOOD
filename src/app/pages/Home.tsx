@@ -20,7 +20,7 @@ export function Home() {
   }, [slides.length]);
 
   // 최신순 정렬 후 상위 3개만 추출
-  const latestNews = [...newsData].sort((a, b) => b.id - a.id).slice(0, 3);
+  const latestNews = [...newsData].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
 
   const features = [
     {
@@ -348,7 +348,7 @@ export function Home() {
               시간이 흐를수록 깊어지는 <br className="md:hidden" /> 원목의 가치를 전합니다.
             </p>
             <Link
-              to="/brand/news"
+              to="/brand/story"
               className="inline-flex items-center space-x-3 bg-white text-[#1C352D] px-12 py-5 rounded-full hover:bg-gray-100 transition-all shadow-2xl font-bold tracking-widest"
             >
               <span>BRAND STORY</span>

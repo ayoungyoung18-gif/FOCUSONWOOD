@@ -36,17 +36,16 @@ export function Projects() {
       title: "성수동 카페 삼하루",
       category: "commercial",
       year: "2025",
-      description: "클라이언트의 디자인 시안을 바탕으로 공간 내 모든 가구를 정교하게 구현한 풀커스텀 제작 프로젝트",
-      image:
-        "https://images.unsplash.com/photo-1768397003905-a202ea6325f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB3b29kZW4lMjBkaW5pbmclMjB0YWJsZXxlbnwxfHx8fDE3NzYzMDIwMzF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      description: "클라이언트의 디자인 시안을 바탕으로 공간 내 모든 가구를 정교하게 구현한 풀커스텀 제작",
+      image: "/images/samharu.jpg",
       tags: ["풀커스텀", "공간디자인", "상업공간"],
     },
     {
       id: 4,
-      title: "포천 주민센터",
+      title: "포천시 주민센터",
       category: "custom",
       year: "2025",
-      description: "",
+      description: "실내 조경과 수납을 결합해 시민들에게 쾌적한 쉼터를 제공하는 포천 주민센터 맞춤형 플랜테리어",
       image: "/images/communityCenter.png",
       tags: ["서재", "책장", "맞춤제작"],
     },
@@ -64,9 +63,8 @@ export function Projects() {
       title: "주택 침실 가구 세트",
       category: "residential",
       year: "2025",
-      description: "침대 프레임, 협탁, 옷장으로 구성된 침실 가구 세트",
-      image:
-        "https://images.unsplash.com/photo-1760888331042-e9f4a447fb2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b29kZW4lMjBob21lJTIwZGVjb3IlMjBhY2Nlc3Nvcmllc3xlbnwxfHx8fDE3NzYzMDE1NTF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      description: "전시 디자인 X 공간 맞춤 커스텀: 침실·다이닝·아이방 통합 가구 솔루션",
+      image: "/images/bed.jpg",
       tags: ["침실", "주거", "세트"],
     },
   ];

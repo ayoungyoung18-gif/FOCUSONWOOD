@@ -18,7 +18,8 @@ export function BrandNews() {
       title: "2019국제기능올림픽선수협회 금메달 수상",
       date: "2019.08.06",
       category: "소식",
-      excerpt: "...",
+      excerpt:
+        "국제기능올림픽선수협회 주관 기능경기대회에서 당당히 금메달을 수상하며, 포커스온우드만이 보유한 세계적 수준의 정교한 목공 기술력을 입증했습니다.타협하지 않는 장인정신과 압도적인 기술 완성도를 바탕으로, 단순한 가구를 넘어 국가가 인정한 최고 수준의 가치를 모든 제품에 담아내고 있습니다.",
       image: "/images/award20192.png",
     },
     {
@@ -26,7 +27,8 @@ export function BrandNews() {
       title: "메이크업 박스 및 스툴 만들기 수업 진행",
       date: "2019.10.12",
       category: "소식",
-      excerpt: "...",
+      excerpt:
+        "단순한 가구 제작을 넘어 실생활에 품격을 더하는 소품을 직접 완성하며, 원목이 주는 일상의 즐거움과 성취감을 함께 나누었습니다.",
       image: "/images/teaching1.png",
     },
     {
@@ -34,7 +36,8 @@ export function BrandNews() {
       title: "2019 공예트렌트 페어 브랜드관 참가",
       date: "2019.12.13",
       category: "전시",
-      excerpt: "...",
+      excerpt:
+        "메이플의 밝은 색감과 월넛의 깊은 무게감이 조화를 이루는 포커스온우드의 시그니처 데스크 라인업을 공예트렌드페어 브랜드관에서 공개했습니다.두 수종의 극명한 색상 대비를 정교한 결구법으로 풀어내어, 목재 본연의 아름다움을 극대화한 독보적인 조형미로 큰 주목을 받았습니다.",
       image: "/images/signaturetableandchair.png",
     },
     {
@@ -42,7 +45,8 @@ export function BrandNews() {
       title: "경기가구창작스튜디오 작품 출품",
       date: "2020.07.30",
       category: "소식",
-      excerpt: "...",
+      excerpt:
+        "원목의 따뜻함에 위트를 더한 '토끼 로봇 스피커' — 정교한 목공 기술로 탄생한 세상에 없던 감성 IT 소품입니다.",
       image: "/images/WS2020.png",
     },
     {
@@ -50,7 +54,8 @@ export function BrandNews() {
       title: "언론이 주목한 포커스온우드: '2022 공예트렌드페어'",
       date: "2022.12.08",
       category: "전시",
-      excerpt: "...",
+      excerpt:
+        "'2022 공예트렌드페어'에서 독창적인 목공예 가구로 언론의 주목을 받으며 브랜드의 가치를 입증했습니다.원목 본연의 미학을 담은 정교한 수작업 가구를 선보여 대중과 전문가들의 큰 호평을 이끌어냈습니다.",
       image: "/images/Fair2022.png",
     },
     {
@@ -58,17 +63,19 @@ export function BrandNews() {
       title: "한국국제가구 및 인테리어산업대전(KOFURN) 참가",
       date: "2023.08.23",
       category: "전시",
-      excerpt: "...",
+      excerpt:
+        "대한민국 대표 가구 전시회 KOFURN 2023에 참여하여, 포커스온우드만의 감각적인 디자인과 정교한 커스텀 기술력을 선보였습니다.",
       image: "/images/Fair2023.png",
     },
-    // 7번째 테스트 데이터
+
     {
       id: 7,
-      title: "새로운 소식 테스트",
-      date: "2024.01.01",
+      title: "[공방 체험] 영복중학교 학생들과 함께한 원목 도마 제작 원데이 클래스",
+      date: "2023.12.23",
       category: "소식",
-      excerpt: "페이지네이션 테스트를 위한 7번째 글입니다.",
-      image: "/images/Fair2023.png",
+      excerpt:
+        "영복중학교 학생 20명이 공방에 직접 방문하여 목수의 작업 환경을 경험하고, 전문 장비를 활용해 세상에 하나뿐인 나만의 원목 도마를 완성했습니다.",
+      image: "/images/middleschool.png",
     },
   ];
 
