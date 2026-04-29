@@ -203,8 +203,8 @@ export function Shipping() {
           >
             {/* 1. 메인 안내 문구: 가독성 높게 수정 */}
             <p className="text-xl text-[#4A4540] font-normal mb-8 break-keep">
-              배송 관련 궁금하신 점은 <span className="text-[#1C352D] font-bold">카카오톡 채널</span>로 문의 주시면{" "}
-              <br className="hidden md:block" />
+              배송 관련 궁금하신 점은 <span className="text-[#1C352D] font-bold">우측 하단 카카오톡 채널</span>로 문의
+              주시면 <br className="hidden md:block" />
               가장 빠르고 상세하게 안내받으실 수 있습니다.
             </p>
 

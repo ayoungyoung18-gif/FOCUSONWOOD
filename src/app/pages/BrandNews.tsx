@@ -11,7 +11,6 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 // import Fair2022 from "@/assets/images/Fair2022.png";
 
 export function BrandNews() {
-  // 1. 데이터 배열 (여기에 7번째 데이터를 꼭 추가 확인해주세요!)
   const news = [
     {
       id: 1,
@@ -70,7 +69,7 @@ export function BrandNews() {
 
     {
       id: 7,
-      title: "[공방 체험] 영복중학교 학생들과 함께한 원목 도마 제작 원데이 클래스",
+      title: "[공방 체험] 영북중학교 학생들과 함께한 원목 도마 제작 원데이 클래스",
       date: "2023.12.23",
       category: "소식",
       excerpt:

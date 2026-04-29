@@ -27,13 +27,12 @@ export function About() {
   ];
 
   const timeline = [
-    { year: "2019", event: "가구기능경기대회 금상 수상" },
-    { year: "2020", event: "포커스온우드 설립" },
-    { year: "2023", event: "맞춤 가구 전문 브랜드로 전환" },
-    { year: "2024", event: "서울 성수동 쇼룸 오픈" },
-    { year: "2026", event: "온라인 플랫폼 런칭" },
+    { year: "2019", event: "전국 가구기능경기대회 금상 수상" },
+    { year: "2020", event: "가구 디자인 스튜디오 '포커스온우드' 설립" },
+    { year: "2023", event: "공간 맞춤형 통합 가구 제작 시스템 확립" },
+    { year: "2024", event: "디자인적 해법을 담은 '기능적 오브제' 가구 시리즈 출시" },
+    { year: "2026", event: "개인 맞춤형 온라인 커스텀 오더 플랫폼 런칭" },
   ];
-
   return (
     <div>
       {/* Hero */}
@@ -83,7 +82,7 @@ export function About() {
         </div>
       </section>
 
-      {/* Values */}
+      {/* Values
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -109,7 +108,7 @@ export function About() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Timeline */}
       <section className="py-20">
@@ -140,7 +139,7 @@ export function About() {
       </section>
 
       {/* Workshop Info */}
-      <section className="py-20 bg-gray-900 text-white">
+      <section className="py-20 bg-[#A6B28B] text- [#F9F6F3]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl mb-6">공방 방문 안내</h2>
           <p className="text-xl text-gray-300 mb-8">

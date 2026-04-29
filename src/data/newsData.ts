@@ -117,7 +117,7 @@ export const newsData = [
 
   {
     id: 7,
-    title: "[공방 체험] 영복중학교 학생들과 함께한 원목 도마 제작 원데이 클래스",
+    title: "[공방 체험] 영북중학교 학생들과 함께한 원목 도마 제작 원데이 클래스",
     date: "2023.12.23",
     category: "소식",
     excerpt:

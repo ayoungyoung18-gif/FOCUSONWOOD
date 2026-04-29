@@ -34,6 +34,7 @@ export function Header() {
     {
       label: "브랜드",
       subItems: [
+        // { path: "/brand/about", label: "포커스온우드?" },
         { path: "/brand/story", label: "브랜드 철학" },
         { path: "/brand/news", label: "브랜드 이야기" },
       ],

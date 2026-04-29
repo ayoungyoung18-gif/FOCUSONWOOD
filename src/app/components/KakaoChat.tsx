@@ -63,36 +63,67 @@ export function KakaoChat() {
         )}
       </AnimatePresence>
 
-      {/* 마스코트 버튼 영역: cursor-pointer 추가 */}
+      {/* 마스코트 버튼 영역 */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`relative transition-all duration-500 ease-in-out transform origin-bottom-right cursor-pointer ${
-          isOpen ? "scale-[0.4] -translate-y-20 -translate-x-44 opacity-95" : "scale-50 translate-y-8"
+        className={`relative transition-all duration-700 ease-in-out transform origin-bottom-right cursor-pointer ${
+          isOpen
+            ? "scale-[0.4] -translate-y-20 -translate-x-44 opacity-95"
+            : "scale-50 translate-y-8 animate-[floating_3s_ease-in-out_infinite]" // 둥둥 떠 있는 애니메이션 강조
         }`}
       >
         {/* 마스코트 위 물음표 뱃지 */}
         {!isOpen && (
-          <div className="absolute -top-4 -left-2 bg-[#1A2F28] text-[#F1EDE8] w-8 h-8 rounded-full flex items-center justify-center shadow-lg floating border-2 border-[#F1EDE8]">
-            <span className="text-sm font-bold">?</span>
+          <div className="absolute -top-6 -left-4 bg-[#1A2F28] text-[#F1EDE8] w-9 h-9 rounded-full flex items-center justify-center shadow-lg border-2 border-[#F1EDE8] z-10 animate-bounce">
+            <span className="text-base font-bold">?</span>
           </div>
         )}
 
         <svg width="140" height="200" viewBox="0 0 140 200" fill="none" className="drop-shadow-2xl">
-          {/* 머리, 눈, 몸통, 팔다리 도안 동일 */}
-          <path d="M70 25C70 10 85 5 95 10C85 15 80 25 70 25Z" fill="#8A9A78" />
-          <rect x="30" y="25" width="80" height="70" rx="15" fill="#5D4037" />
-          <circle cx="55" cy="60" r="4" fill="#D1CCC7" />
-          <circle cx="85" cy="60" r="4" fill="#D1CCC7" />
+          {/* [항상 보임] 머리: 모서리가 둥근 직사각형 */}
+          <rect x="25" y="20" width="90" height="70" rx="20" fill="#5D4037" />
 
-          <g className={`transition-opacity duration-500 ${isOpen ? "opacity-100" : "opacity-0"}`}>
-            <rect x="6" y="123" width="30" height="12" rx="6" fill="#5D4037" />
-            <rect x="36.5" y="100" width="67" height="60" rx="12" fill="#5D4037" />
-            <rect x="50" y="160" width="8" height="25" rx="4" fill="#5D4037" />
-            <rect x="82" y="160" width="8" height="25" rx="4" fill="#5D4037" />
-            <rect x="104" y="123" width="30" height="12" rx="6" fill="#5D4037" className="wave-arm" />
+          {/* 크게 키운 눈 (반지름 4 -> 7로 변경하여 더 또렷하게) */}
+          <circle cx="52" cy="55" r="7" fill="#D1CCC7" />
+          <circle cx="88" cy="55" r="7" fill="#D1CCC7" />
+
+          {/* 눈동자 하이라이트 (더 생기있게) */}
+          <circle cx="54" cy="53" r="2.5" fill="white" fillOpacity="0.8" />
+          <circle cx="90" cy="53" r="2.5" fill="white" fillOpacity="0.8" />
+
+          {/* 나뭇잎 장식 */}
+          <path d="M70 20C70 5 85 0 95 5C85 10 80 20 70 20Z" fill="#8A9A78" />
+
+          {/* [클릭 시에만 나타남] 몸통 및 팔다리 그룹 */}
+          <g
+            className={`transition-all duration-500 ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
+          >
+            {/* 몸통: 머리보다 작은 직사각형 */}
+            <rect x="40" y="95" width="60" height="50" rx="15" fill="#5D4037" />
+
+            {/* 팔 */}
+            <rect x="12" y="105" width="28" height="12" rx="6" fill="#5D4037" />
+            <rect x="100" y="105" width="28" height="12" rx="6" fill="#5D4037" className="wave-arm" />
+
+            {/* 다리 */}
+            <rect x="50" y="145" width="10" height="22" rx="5" fill="#5D4037" />
+            <rect x="80" y="145" width="10" height="22" rx="5" fill="#5D4037" />
           </g>
         </svg>
       </button>
+
+      {/* Tailwind CSS를 사용 중이라면 global CSS에 추가 필요 */}
+      <style jsx>{`
+        @keyframes floating {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-20px);
+          } /* 둥둥 뜨는 높이 증가 */
+        }
+      `}</style>
     </div>
   );
 }

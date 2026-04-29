@@ -4,7 +4,19 @@ import { Link } from "react-router";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { useCart } from "../context/CartContext";
 import { ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
-
+import imgBodegi from "../../assets/images/accbodegi1.jpg";
+import imgDisplayStand from "../../assets/images/accDisplaystand1.jpg";
+import imgAccessories from "../../assets/images/accessories.jpg";
+import imgLaptopStand from "../../assets/images/acclaptopstand4.jpg";
+import imgTableClock from "../../assets/images/accTableclock2.jpg";
+import imgTrivet from "../../assets/images/accTrivet1.jpg";
+import imgPenholder1 from "../../assets/images/accPenholder1.jpg";
+import imgPenholderW from "../../assets/images/accPenholderw.jpg";
+import imgPenholderB from "../../assets/images/accPenholderB1.jpg";
+import imgWatchHolder from "../../assets/images/accWatchholder2.jpg";
+import imgClosetRack from "../../assets/images/closetrack.jpg";
+import imgSideTable from "../../assets/images/designsidetable.png";
+import imgWineCabinet from "../../assets/images/signaturewine cabinet.png";
 export function Shop() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1); // 1. 페이지 상태 추가
@@ -17,76 +29,26 @@ export function Shop() {
     { id: "desk", label: "데스크 소품" },
     { id: "decor", label: "인테리어" },
   ];
-
   const products = [
     {
       id: 1,
       name: "보드기(나무로봇키링)",
       category: "desk",
       price: 50000,
-      image: "/images/accessories.jpg",
+      image: imgBodegi,
       material: "월넛/오크/메이플",
     },
-    {
-      id: 2,
-      name: "노트북거치대",
-      category: "desk",
-      price: 35000,
-      image: "/images/acclaptopstand4.jpg",
-      material: "월넛",
-    },
-    { id: 3, name: "탁상시계", category: "desk", price: 75000, image: "/images/accTableclock2.jpg", material: "월넛" },
-    {
-      id: 4,
-      name: "곰돌이소품트레이",
-      category: "desk",
-      price: 13000,
-      image: "/images/accDisplaystand1.jpg",
-      material: "월넛",
-    },
-    { id: 5, name: "냄비받침", category: "kitchen", price: 26000, image: "/images/accTrivet1.jpg", material: "월넛" },
-    { id: 6, name: "펜홀더A", category: "desk", price: 17000, image: "/images/accPenholder1.jpg", material: "월넛" },
-    {
-      id: 7,
-      name: "명함꽂이펜홀더",
-      category: "desk",
-      price: 30000,
-      image: "/images/accPenholderw.jpg",
-      material: "월넛",
-    },
-    { id: 8, name: "펜홀더B", category: "desk", price: 15000, image: "/images/accPenholderB1.jpg", material: "월넛" },
-    {
-      id: 9,
-      name: "손목시계거치대",
-      category: "desk",
-      price: 25000,
-      image: "/images/accWatchholder2.jpg",
-      material: "월넛",
-    },
-    {
-      id: 10,
-      name: "옷걸이",
-      category: "decor",
-      price: 220000,
-      image: "/images/closetrack.jpg",
-      material: "월넛",
-    },
-    {
-      id: 11,
-      name: "낮은 2단 서랍장",
-      category: "decor",
-      price: 500000,
-      image: "/images/designsidetable.png",
-      material: "월넛",
-    },
-    {
-      id: 12,
-      name: "시그니처 와인장",
-      category: "decor",
-      price: 1320000,
-      image: "/images/signaturewine cabinet.png",
-      material: "월넛",
-    },
+    { id: 2, name: "노트북거치대", category: "desk", price: 35000, image: imgLaptopStand, material: "월넛" },
+    { id: 3, name: "탁상시계", category: "desk", price: 75000, image: imgTableClock, material: "월넛" },
+    { id: 4, name: "곰돌이소품트레이", category: "desk", price: 13000, image: imgDisplayStand, material: "월넛" },
+    { id: 5, name: "냄비받침", category: "kitchen", price: 26000, image: imgTrivet, material: "월넛" },
+    { id: 6, name: "펜홀더A", category: "desk", price: 17000, image: imgPenholder1, material: "월넛" },
+    { id: 7, name: "명함꽂이펜홀더", category: "desk", price: 30000, image: imgPenholderW, material: "월넛" },
+    { id: 8, name: "펜홀더B", category: "desk", price: 15000, image: imgPenholderB, material: "월넛" },
+    { id: 9, name: "손목시계거치대", category: "desk", price: 25000, image: imgWatchHolder, material: "월넛" },
+    { id: 10, name: "옷걸이", category: "decor", price: 220000, image: imgClosetRack, material: "월넛" },
+    { id: 11, name: "낮은 2단 서랍장", category: "decor", price: 500000, image: imgSideTable, material: "월넛" },
+    { id: 12, name: "시그니처 와인장", category: "decor", price: 1320000, image: imgWineCabinet, material: "월넛" },
   ];
 
   // 3. 필터링 로직 (카테고리 변경 시 1페이지로 리셋)

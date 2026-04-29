@@ -1,6 +1,12 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import ddpImg from "../../assets/images/ddp.png";
+import schoolImg from "../../assets/images/project_school.png";
+import samharuImg from "../../assets/images/samharu.jpg";
+import centerImg from "../../assets/images/communityCenter.png";
+import kinderImg from "../../assets/images/kindergarden.jpg";
+import bedImg from "../../assets/images/bed.jpg";
 
 export function Projects() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -19,16 +25,16 @@ export function Projects() {
       category: "commercial",
       year: "2026",
       description: "디자인 성지의 공간미를 살린 미니멀한 전시 매대와 라이프스타일 굿즈 진열 선반 제작",
-      image: "/images/ddp.png",
+      image: ddpImg,
       tags: ["공공기관", "전시가구", "화이트오크"],
     },
     {
       id: 2,
       title: "철원역사문화공원의 근대 학교",
       category: "commercial",
-      // year: "2026",
+      year: "2026",
       description: "근대 교육 현장의 분위기를 재현하기 위해 고재의 질감을 살린 맞춤 책상과 교구장 제작",
-      image: "/images/project_school.png",
+      image: schoolImg,
       tags: ["문화공원", "역사재현", "전통가구"],
     },
     {
@@ -37,7 +43,7 @@ export function Projects() {
       category: "commercial",
       year: "2025",
       description: "클라이언트의 디자인 시안을 바탕으로 공간 내 모든 가구를 정교하게 구현한 풀커스텀 제작",
-      image: "/images/samharu.jpg",
+      image: samharuImg,
       tags: ["풀커스텀", "공간디자인", "상업공간"],
     },
     {
@@ -46,16 +52,16 @@ export function Projects() {
       category: "custom",
       year: "2025",
       description: "실내 조경과 수납을 결합해 시민들에게 쾌적한 쉼터를 제공하는 포천 주민센터 맞춤형 플랜테리어",
-      image: "/images/communityCenter.png",
+      image: centerImg,
       tags: ["서재", "책장", "맞춤제작"],
     },
     {
       id: 5,
-      title: "포천시 어린이집",
+      title: "의정부 어린이집",
       category: "commercial",
       year: "2025",
       description: "아이들의 활동 동선에 맞춰 모서리를 둥글게 다듬고 친환경 소재로 제작한 맞춤형 원목 사물함 3조",
-      image: "/images/kindergarden.jpg",
+      image: kinderImg,
       tags: ["어린이가구", "원목사물함", "맞춤제작"],
     },
     {
@@ -63,8 +69,8 @@ export function Projects() {
       title: "주택 침실 가구 세트",
       category: "residential",
       year: "2025",
-      description: "전시 디자인 X 공간 맞춤 커스텀: 침실·다이닝·아이방 통합 가구 솔루션",
-      image: "/images/bed.jpg",
+      description: "전시 디자인 X 공간 맞춤 커스텀: 침실·다이닝·아이방 통합 가구 제작",
+      image: bedImg,
       tags: ["침실", "주거", "세트"],
     },
   ];
