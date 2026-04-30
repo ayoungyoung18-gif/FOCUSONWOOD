@@ -10,10 +10,10 @@ import mainSlide1 from "../../assets/images/mainslide1.png";
 import mainAcc from "../../assets/images/mainaccessories.jpg";
 import closetRack from "../../assets/images/closetrack.jpg";
 import lowTable from "../../assets/images/lowtable.jpg";
-import drawer1 from "../../assets/images/drawer1.jpg";
+import drawer2 from "../../assets/images/drawer2.jpg";
 import sigTable from "../../assets/images/signaturetableandchair.png";
 
-const SLIDE_IMAGES = [mainSlide1, mainAcc, closetRack, lowTable, drawer1];
+const SLIDE_IMAGES = [mainSlide1, mainAcc, closetRack, lowTable, drawer2];
 
 const FEATURES = [
   {
@@ -110,26 +110,39 @@ export function Home() {
         )}
       </AnimatePresence>
 
-      {/* 1. Hero Section: 배경 이미지 슬라이더 포함 */}
+      {/* 1. Hero Section 수정 부분 */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
+              // 드래그 기능 추가
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              onDragEnd={(e, { offset, velocity }) => {
+                const swipeThreshold = 50; // 넘기기 위한 최소 거리
+                if (offset.x < -swipeThreshold) {
+                  // 왼쪽으로 쓸었을 때 다음 슬라이드
+                  handleSlideChange((currentSlide + 1) % SLIDE_IMAGES.length);
+                } else if (offset.x > swipeThreshold) {
+                  // 오른쪽으로 쓸었을 때 이전 슬라이드
+                  handleSlideChange((currentSlide - 1 + SLIDE_IMAGES.length) % SLIDE_IMAGES.length);
+                }
+              }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.5 }}
-              className="absolute inset-0"
+              className="absolute inset-0 cursor-grab active:cursor-grabbing" // 마우스 사용자를 위한 커서 추가
             >
               <ImageWithFallback
                 src={SLIDE_IMAGES[currentSlide]}
                 alt="포커스온우드 메인 슬라이드"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover pointer-events-none" // 이미지 드래그 방해 금지
               />
             </motion.div>
           </AnimatePresence>
-          <div className="absolute inset-0 bg-[#1A2F28]/40 z-10" />
+          <div className="absolute inset-0 bg-[#1A2F28]/40 z-10 pointer-events-none" />
         </div>
 
         <div className="relative z-20 text-center px-4 max-w-4xl">
@@ -165,7 +178,7 @@ export function Home() {
               <button
                 key={idx}
                 onClick={() => handleSlideChange(idx)}
-                className="flex-1 relative py-6 text-[#F1EDE8] transition-all group"
+                className="flex-1 relative py-6 text-[#F1EDE8] transition-all group cursor-pointer"
               >
                 <span
                   className={`text-[10px] font-bold transition-opacity duration-300 ${currentSlide === idx ? "opacity-100" : "opacity-30"}`}
@@ -269,8 +282,8 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-end mb-12 border-b border-gray-100 pb-8">
             <div>
-              <h2 className="text-4xl font-bold text-[#1A2F28] mb-3">새로운 소식</h2>
-              <p className="text-sm text-gray-400 font-bold">포커스온우드의 브랜드 이야기를 전해드립니다.</p>
+              <h2 className="text-5xl font-bold text-[#1A2F28] mb-3">새로운 소식</h2>
+              <p className="text-xl text-gray-400 font-bold">포커스온우드의 브랜드 이야기를 전해드립니다.</p>
             </div>
             <Link
               to="/brand/news"

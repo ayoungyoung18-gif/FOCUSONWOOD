@@ -91,24 +91,64 @@ export function KakaoChat() {
           <circle cx="54" cy="53" r="2.5" fill="white" fillOpacity="0.8" />
           <circle cx="90" cy="53" r="2.5" fill="white" fillOpacity="0.8" />
 
-          {/* 나뭇잎 장식 */}
-          <path d="M70 20C70 5 85 0 95 5C85 10 80 20 70 20Z" fill="#8A9A78" />
-
+          {/* 나뭇잎 장식: 크기를 키우고 곡선을 더 풍성하게 수정 */}
+          <path
+            d="M70 22C70 2 95 -5 110 5C95 12 85 22 70 22Z"
+            fill="#8A9A78"
+            className="transition-transform duration-300 hover:scale-110"
+          />
           {/* [클릭 시에만 나타남] 몸통 및 팔다리 그룹 */}
           <g
             className={`transition-all duration-500 ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
           >
-            {/* 몸통: 머리보다 작은 직사각형 */}
-            <rect x="40" y="95" width="60" height="50" rx="15" fill="#5D4037" />
+            {/* 몸통 */}
+            <rect x="40" y="85" width="60" height="33" rx="8" fill="#5D4037" />
 
-            {/* 팔 */}
-            <rect x="12" y="105" width="28" height="12" rx="6" fill="#5D4037" />
-            <rect x="100" y="105" width="28" height="12" rx="6" fill="#5D4037" className="wave-arm" />
+            {/* 왼팔 */}
+            <rect x="25" y="95" width="25" height="12" rx="6" fill="#5D4037" />
+
+            {/* 오른팔: 어깨 고정 및 위아래 애니메이션 적용 */}
+            <rect
+              x="90"
+              y="95"
+              width="25"
+              height="12"
+              rx="6"
+              fill="#5D4037"
+              className="wave-arm-vertical origin-[95px_101px]"
+            />
 
             {/* 다리 */}
-            <rect x="50" y="145" width="10" height="22" rx="5" fill="#5D4037" />
-            <rect x="80" y="145" width="10" height="22" rx="5" fill="#5D4037" />
+            <rect x="50" y="115" width="10" height="22" rx="5" fill="#5D4037" />
+            <rect x="80" y="115" width="10" height="22" rx="5" fill="#5D4037" />
           </g>
+
+          <style jsx>{`
+            /* 위아래로 까딱이는 인사 애니메이션 */
+            @keyframes waveVertical {
+              0%,
+              100% {
+                transform: rotate(-10deg); /* 살짝 올라간 기본 상태 */
+              }
+              50% {
+                transform: rotate(-80deg); /* 수직에 가깝게 위로 번쩍 들어올림 */
+              }
+            }
+
+            .wave-arm-vertical {
+              animation: waveVertical 0.8s ease-in-out infinite;
+            }
+
+            @keyframes floating {
+              0%,
+              100% {
+                transform: translateY(0px);
+              }
+              50% {
+                transform: translateY(-20px);
+              }
+            }
+          `}</style>
         </svg>
       </button>
 

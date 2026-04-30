@@ -63,7 +63,7 @@ export function WoodTypes() {
   };
 
   return (
-    <div className="bg-[#F9F6F3] min-h-screen pb-32 overflow-x-hidden">
+    <div className="bg-[#F9F6F3] min-h-screen pb-12 overflow-x-hidden">
       <header className="text-center pt-24 mb-16">
         <div className="flex flex-col items-center mb-10">
           <motion.div animate={{ height: 48 }} className="w-[1px] bg-[#1C352D]/40 mb-6" />
@@ -74,47 +74,85 @@ export function WoodTypes() {
 
       <div className="max-w-7xl mx-auto px-6">
         {viewMode !== "list" ? (
-          <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-[600px] gap-12">
+          <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-[500px] gap-12">
             <motion.div
               layout
               className={`relative h-[500px] flex items-center justify-center transition-all duration-1000 ease-in-out ${
                 viewMode === "stack" ? "w-full" : "w-full lg:w-1/2"
               }`}
             >
-              {woods.map((wood, index) => {
-                const isSelected = selectedIndex === index;
-                const distance = index - selectedIndex;
-                const stackX = index * 12; // 뒤에 카드가 보이게 살짝 오프셋
-                const stackRotate = index * 3;
-
-                return (
+              <AnimatePresence>
+                {viewMode === "stack" && (
                   <motion.div
-                    key={wood.name}
-                    layoutId={`card-${wood.name}`}
-                    animate={{
-                      x: viewMode === "stack" ? stackX : distance * 25,
-                      y: viewMode === "stack" ? -stackX : isSelected ? -40 : 0,
-                      rotate: viewMode === "stack" ? stackRotate : distance * 5,
-                      scale: isSelected ? 1 : 0.9,
-                      opacity: viewMode === "stack" ? (index < 3 ? 1 : 0) : isSelected ? 1 : 0.4,
-                      zIndex: isSelected ? 50 : 30 - Math.abs(distance),
-                    }}
-                    transition={{ type: "spring", stiffness: 260, damping: 30 }}
-                    onClick={() => handleCardClick(index)}
-                    className="absolute w-64 md:w-80 aspect-[3/4] cursor-pointer"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-x-0 top-[80%] -translate-y-1/2 flex justify-center z-50"
                   >
-                    <div
-                      className={`relative w-full h-full rounded-sm overflow-hidden shadow-2xl border-[12px] bg-white transition-colors ${isSelected ? "border-white" : "border-gray-100"}`}
-                    >
-                      <ImageWithFallback src={wood.image} alt={wood.name} className="w-full h-full object-cover" />
-                      <div className="absolute top-4 right-4 bg-black/20 backdrop-blur-md px-2 py-1 rounded text-[10px] text-white font-bold">
-                        0{index + 1}
-                      </div>
-                    </div>
+                    {/* hover: 설정을 추가하여 마우스를 올리면 색상이 변하게 했습니다 */}
+                    <span className="bg-black/40 backdrop-blur-md text-white px-8 py-3 rounded-full text-[16px] font-bold tracking-tight shadow-2xl border border-white/5 transition-all duration-300 cursor-pointer hover:bg-white/50 hover:scale-105 hover:border-[#F9F6F3]/50">
+                      클릭해보세요
+                    </span>
                   </motion.div>
-                );
-              })}
+                )}
+              </AnimatePresence>
 
+              <AnimatePresence mode="popLayout">
+                {woods.map((wood, index) => {
+                  const isSelected = selectedIndex === index;
+                  const distance = index - selectedIndex;
+                  const isVisible = Math.abs(distance) <= 1; // 앞뒤 1개씩 총 3개만 활성화
+
+                  const stackX = index * 12;
+                  const stackRotate = index * 3;
+
+                  return (
+                    <motion.div
+                      key={wood.name}
+                      layoutId={`card-${wood.name}`}
+                      drag={viewMode === "spread" ? "x" : false}
+                      dragConstraints={{ left: 0, right: 0 }}
+                      onDragEnd={(e, { offset }) => {
+                        const swipeThreshold = 50;
+                        if (offset.x < -swipeThreshold) paginate(1);
+                        else if (offset.x > swipeThreshold) paginate(-1);
+                      }}
+                      initial={{ opacity: 0, x: 100 }}
+                      animate={{
+                        x: viewMode === "stack" ? stackX : isSelected ? 0 : distance * 40 + Math.sign(distance) * 50,
+                        y: viewMode === "stack" ? -stackX : isSelected ? -40 : 10,
+                        rotate: viewMode === "stack" ? stackRotate : distance * 8,
+                        scale: isSelected ? 1 : Math.max(0.5, 1 - Math.abs(distance) * 0.15),
+                        opacity:
+                          viewMode === "stack" ? (index < 3 ? 1 : 0) : Math.max(0.1, 1 - Math.abs(distance) * 0.4),
+                        ilter: isSelected ? "blur(0px)" : `blur(${Math.abs(distance) * 1.5}px)`,
+                        zIndex: 20 - Math.abs(distance), // 뒤에 있는 카드가 항상 아래로
+                        pointerEvents: isSelected ? "auto" : "none",
+                      }}
+                      exit={{ opacity: 0, x: -100 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                      onClick={() => handleCardClick(index)}
+                      className={`absolute w-64 md:w-80 aspect-[3/4] ${
+                        viewMode === "spread" ? "cursor-grab active:cursor-grabbing" : "cursor-pointer"
+                      }`}
+                    >
+                      <div
+                        className={`relative w-full h-full rounded-sm overflow-hidden shadow-2xl border-[12px] bg-white transition-colors duration-500 ${isSelected ? "border-white" : "border-gray-50"}`}
+                      >
+                        <ImageWithFallback
+                          src={wood.image}
+                          alt={wood.name}
+                          className="w-full h-full object-cover pointer-events-none"
+                        />
+                        <div className="absolute top-4 right-4 bg-black/20 backdrop-blur-md px-2 py-1 rounded text-[10px] text-white font-bold">
+                          0{index + 1}
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+              {/* 화살표 버튼 */}
               <AnimatePresence>
                 {viewMode === "spread" && (
                   <motion.div
@@ -129,7 +167,7 @@ export function WoodTypes() {
                         paginate(-1);
                       }}
                       disabled={selectedIndex === 0}
-                      className="p-3 bg-white/80 rounded-full shadow-lg text-[#1C352D] hover:bg-[#1C352D] hover:text-white transition-all pointer-events-auto disabled:opacity-0"
+                      className="p-3 bg-white/80 rounded-full shadow-lg text-[#1C352D] hover:bg-[#1C352D] hover:text-white transition-all cursor-pointer pointer-events-auto disabled:opacity-0"
                     >
                       <ChevronLeft size={24} />
                     </button>
@@ -139,7 +177,7 @@ export function WoodTypes() {
                         paginate(1);
                       }}
                       disabled={selectedIndex === woods.length - 1}
-                      className="p-3 bg-white/80 rounded-full shadow-lg text-[#1C352D] hover:bg-[#1C352D] hover:text-white transition-all pointer-events-auto disabled:opacity-0"
+                      className="p-3 bg-white/80 rounded-full shadow-lg text-[#1C352D] hover:bg-[#1C352D] hover:text-white transition-all cursor-pointer pointer-events-auto disabled:opacity-0"
                     >
                       <ChevronRight size={24} />
                     </button>
@@ -148,19 +186,17 @@ export function WoodTypes() {
               </AnimatePresence>
             </motion.div>
 
-            <AnimatePresence>
+            {/* 설명 텍스트 영역 */}
+            <AnimatePresence mode="wait">
               {viewMode === "spread" && (
                 <motion.div
-                  initial={{ opacity: 0, x: 50 }}
+                  key={selectedIndex}
+                  initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
+                  exit={{ opacity: 0, x: -20 }}
                   className="w-full lg:w-1/2 space-y-8 pl-0 lg:pl-12"
                 >
-                  <div className="overflow-hidden">
-                    <motion.h2 initial={{ y: 50 }} animate={{ y: 0 }} className="text-4xl font-light text-[#4A4540]">
-                      {woods[selectedIndex].name}
-                    </motion.h2>
-                  </div>
+                  <h2 className="text-4xl font-light text-[#4A4540]">{woods[selectedIndex].name}</h2>
                   <p className="text-gray-600 font-light text-lg leading-relaxed break-keep">
                     {woods[selectedIndex].characteristics}
                   </p>
@@ -183,6 +219,7 @@ export function WoodTypes() {
             </AnimatePresence>
           </div>
         ) : (
+          /* 리스트 모드 */
           <div className="space-y-32 max-w-4xl mx-auto">
             {woods.map((wood) => (
               <motion.div
@@ -201,19 +238,19 @@ export function WoodTypes() {
             ))}
           </div>
         )}
-        {/* 목록 섹션이 끝나는 지점 */}
-        <div className="flex justify-center mt-12 mb-8">
+
+        <div className="flex justify-center mt-8 mb-8">
           <button
             onClick={() => setViewMode(viewMode === "list" ? "spread" : "list")}
-            className="inline-flex items-center gap-2 px-6 py-2 border border-[#1C352D]/20 rounded-full text-[#1C352D] text-xs tracking-widest hover:bg-[#1C352D] hover:text-white transition-all z-50 relative"
+            className="inline-flex items-center gap-2 px-8 py-3 border border-[#1C352D] rounded-full text-[#1C352D] text-[16px] font-bold tracking-widest cursor-pointer hover:bg-[#1C352D] hover:text-white transition-all z-30 relative bg-[#F9F6F3] shadow-md active:scale-95"
           >
             {viewMode === "list" ? (
               <>
-                <Layers size={14} /> 갤러리 보기
+                <Layers size={18} /> 하나씩 보기
               </>
             ) : (
               <>
-                <LayoutGrid size={14} /> 모두 보기
+                <LayoutGrid size={18} /> 한눈에 보기
               </>
             )}
           </button>

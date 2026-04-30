@@ -118,7 +118,7 @@ export function Shop() {
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`relative py-5 text-sm md:text-base tracking-[0.2em] transition-all duration-300 ${
+                className={`relative py-5 text-sm md:text-base tracking-[0.2em] cursor-pointer transition-all duration-300 ${
                   activeCategory === category.id ? "text-[#1C352D] font-bold" : "text-gray-400 hover:text-[#4A4540]"
                 }`}
               >
@@ -166,7 +166,7 @@ export function Shop() {
                 </Link>
                 <button
                   onClick={() => addToCart({ ...product, quantity: 1 })}
-                  className="w-full flex items-center justify-center space-x-2 bg-[#1C352D] text-white py-3 rounded-lg hover:bg-opacity-90 transition-colors"
+                  className="w-full flex items-center justify-center space-x-2 bg-[#1C352D] text-white py-3 rounded-lg cursor-pointer hover:bg-opacity-90 transition-colors"
                 >
                   <ShoppingCart size={18} />
                   <span>장바구니 담기</span>
@@ -182,7 +182,7 @@ export function Shop() {
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              className="p-2 text-gray-400 disabled:opacity-20"
+              className="p-2 cursor-pointer text-gray-400 disabled:opacity-20"
             >
               <ChevronLeft />
             </button>
@@ -191,7 +191,7 @@ export function Shop() {
                 <button
                   key={i + 1}
                   onClick={() => setCurrentPage(i + 1)}
-                  className={`w-10 h-10 rounded-full ${currentPage === i + 1 ? "bg-[#1C352D] text-white" : "text-gray-400 hover:bg-gray-100"}`}
+                  className={`w-10 h-10 rounded-full cursor-pointer ${currentPage === i + 1 ? "bg-[#1C352D] text-white" : "text-gray-400 hover:bg-gray-100"}`}
                 >
                   {i + 1}
                 </button>
@@ -200,7 +200,7 @@ export function Shop() {
             <button
               onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
-              className="p-2 text-gray-400 disabled:opacity-20"
+              className="p-2 cursor-pointer text-gray-400 disabled:opacity-20"
             >
               <ChevronRight />
             </button>

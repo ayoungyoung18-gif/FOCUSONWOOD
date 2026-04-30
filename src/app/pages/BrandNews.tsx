@@ -155,7 +155,7 @@ export function BrandNews() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="group flex flex-col"
+                className="group flex flex-col cursor-pointer"
               >
                 <div className="relative overflow-hidden rounded-sm mb-5 aspect-[4/3] bg-gray-50">
                   <ImageWithFallback
@@ -196,7 +196,9 @@ export function BrandNews() {
             <button
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
-              className={`p-2 ${currentPage === 1 ? "text-gray-200" : "text-gray-400 hover:text-[#1C352D]"}`}
+              className={`p-2 ${
+                currentPage === 1 ? "text-gray-200 cursor-default" : "text-gray-400 hover:text-[#1C352D] cursor-pointer"
+              }`}
             >
               <ChevronLeft size={24} />
             </button>
@@ -206,7 +208,7 @@ export function BrandNews() {
                 <button
                   key={i + 1}
                   onClick={() => paginate(i + 1)}
-                  className={`w-10 h-10 text-sm font-medium transition-all ${
+                  className={`w-10 h-10 text-sm font-medium rounded-full transition-all cursor-pointer ${
                     currentPage === i + 1 ? "bg-[#1C352D] text-white" : "text-gray-400 hover:bg-gray-100"
                   }`}
                 >
@@ -218,7 +220,7 @@ export function BrandNews() {
             <button
               onClick={() => paginate(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className={`p-2 ${currentPage === totalPages ? "text-gray-200" : "text-gray-400 hover:text-[#1C352D]"}`}
+              className={`p-2 rounded-full transition-colors cursor-pointer ${currentPage === totalPages ? "text-gray-200" : "text-gray-400 hover:text-[#1C352D]"}`}
             >
               <ChevronRight size={24} />
             </button>
