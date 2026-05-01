@@ -41,7 +41,7 @@ export function Header() {
     },
     { path: "/projects", label: "프로젝트" },
     {
-      label: "소재와 제작",
+      label: "소재와 배송",
       subItems: [
         { path: "/wood-types", label: "원목 소재" },
         { path: "/manufacturing", label: "제작 과정" },
