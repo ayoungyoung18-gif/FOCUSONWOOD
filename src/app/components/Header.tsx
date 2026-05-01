@@ -9,39 +9,65 @@ import { LoginModal } from "./LoginModal";
 
 export function Header() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // 모바일 메뉴 상태
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
   const location = useLocation();
   const { totalItems } = useCart();
   const { isAuthenticated, user, logout } = useAuth();
 
-  // 페이지 이동 시 모바일 메뉴 닫기
+  // 1. 페이지 이동 시 모바일 메뉴 닫기 및 초기 노출 상태 설정
   useEffect(() => {
     setIsMenuOpen(false);
+    // 홈("/")일 때는 안보이게 시작, 그 외 페이지는 보이게 시작
+    setIsVisible(location.pathname !== "/");
   }, [location.pathname]);
 
+  // 2. 스크롤 및 마우스 움직임 감지 통합 로직
   useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (location.pathname === "/") {
+        // [홈 화면 로직]
+        if (currentScrollY < 50) {
+          setIsVisible(false); // 최상단에서는 숨김
+        } else {
+          setIsVisible(true); // 조금이라도 내리면 나타남
+        }
+      } else {
+        // [일반 페이지 로직] 항상 보이게 유지
+        setIsVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
     const handleMouseMove = () => {
       setIsVisible(true);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [location.pathname, lastScrollY]);
 
   const navItems = [
     {
       label: "브랜드",
       subItems: [
-        // { path: "/brand/about", label: "포커스온우드?" },
         { path: "/brand/story", label: "브랜드 철학" },
         { path: "/brand/news", label: "브랜드 이야기" },
       ],
     },
     { path: "/projects", label: "프로젝트" },
     {
-      label: "소재와 배송",
+      label: "소재와 제작",
       subItems: [
         { path: "/wood-types", label: "원목 소재" },
         { path: "/manufacturing", label: "제작 과정" },
@@ -134,7 +160,6 @@ export function Header() {
                   </span>
                 )}
               </Link>
-              {/* 모바일 햄버거 버튼 */}
               <button className="lg:hidden p-2 cursor-pointer z-50" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -142,7 +167,7 @@ export function Header() {
           </div>
         </nav>
 
-        {/* 🟢 모바일 메뉴 영역 추가 */}
+        {/* 모바일 메뉴 영역 */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
