@@ -1,5 +1,5 @@
 import { useEffect } from "react"; // 🟢 추가
-import { Outlet, useLocation } from "react-router"; // 🟢 useLocation 추가
+import { Outlet, useLocation } from "react-router-dom"; // 🟢 useLocation 추가
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { KakaoChat } from "../components/KakaoChat";

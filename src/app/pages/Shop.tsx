@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion"; // motion/react 대신 framer-motion 추천
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { useCart } from "../context/CartContext";
 import { ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
-import imgBodegi from "../../assets/images/accbodegi1.jpg";
+import imgBodegi from "../../assets/images/accbodegi2.jpg";
 import imgDisplayStand from "../../assets/images/accDisplaystand1.jpg";
 import imgAccessories from "../../assets/images/accessories.jpg";
 import imgLaptopStand from "../../assets/images/acclaptopstand4.jpg";

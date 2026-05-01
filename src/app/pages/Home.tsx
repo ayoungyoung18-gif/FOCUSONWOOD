@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { ArrowRight, Hammer, Heart, Leaf, ShoppingBag, Calendar, ChevronUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -282,7 +282,7 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-end mb-12 border-b border-gray-100 pb-8">
             <div>
-              <h2 className="text-5xl font-bold text-[#1A2F28] mb-3">새로운 소식</h2>
+              <h2 className="text-4xl font-bold text-[#1A2F28] mb-3">새로운 소식</h2>
               <p className="text-xl text-gray-400 font-bold">포커스온우드의 브랜드 이야기를 전해드립니다.</p>
             </div>
             <Link

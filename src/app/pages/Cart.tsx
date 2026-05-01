@@ -1,7 +1,7 @@
-import { Link } from 'react-router';
-import { Trash2, ShoppingBag } from 'lucide-react';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { useCart } from '../context/CartContext';
+import { Link } from "react-router-dom";
+import { Trash2, ShoppingBag } from "lucide-react";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { useCart } from "../context/CartContext";
 
 export function Cart() {
   const { items, removeFromCart, updateQuantity, totalPrice, totalItems } = useCart();
@@ -31,16 +31,9 @@ export function Cart() {
 
         <div className="space-y-4 mb-8">
           {items.map((item) => (
-            <div
-              key={item.id}
-              className="flex items-center space-x-4 bg-white p-4 rounded-lg border border-gray-200"
-            >
+            <div key={item.id} className="flex items-center space-x-4 bg-white p-4 rounded-lg border border-gray-200">
               <div className="w-24 h-24 flex-shrink-0 rounded overflow-hidden">
-                <ImageWithFallback
-                  src={item.image}
-                  alt={item.name}
-                  className="w-full h-full object-cover"
-                />
+                <ImageWithFallback src={item.image} alt={item.name} className="w-full h-full object-cover" />
               </div>
 
               <div className="flex-grow">
@@ -64,9 +57,7 @@ export function Cart() {
                 </button>
               </div>
 
-              <div className="text-lg w-24 text-right">
-                {(item.price * item.quantity).toLocaleString()}원
-              </div>
+              <div className="text-lg w-24 text-right">{(item.price * item.quantity).toLocaleString()}원</div>
 
               <button
                 onClick={() => removeFromCart(item.id)}

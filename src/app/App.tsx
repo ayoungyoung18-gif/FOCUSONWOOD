@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { RouterProvider } from "react-router";
+import { RouterProvider } from "react-router-dom";
 import { router } from "./routes";
 import { CartProvider } from "./context/CartContext";
 // 🟢 경로를 기존에 사용하시던 AuthContext로 수정했습니다.

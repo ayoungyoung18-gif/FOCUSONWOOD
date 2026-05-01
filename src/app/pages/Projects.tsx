@@ -73,6 +73,42 @@ export function Projects() {
       image: bedImg,
       tags: ["침실", "주거", "세트"],
     },
+    {
+      id: 7,
+      title: "레이저 각인 (명패·상패)",
+      category: "custom",
+      year: "2025",
+      description: "관공서·기업 명패 및 단체 상패 맞춤 제작",
+      image: bedImg, // 추후 명패/상패 이미지로 교체 권장
+      tags: ["단체주문", "나무명패", "감사패", "기업제작"],
+    },
+    {
+      id: 8,
+      title: "영북고등학교 휴게공간",
+      category: "commercial",
+      year: "2025",
+      description: "학생들의 쉼을 위한 밴치 배치 및 편안한 분위기의 휴게 공간 조성",
+      image: bedImg,
+      tags: ["학교인테리어", "휴게공간", "맞춤가구"],
+    },
+    {
+      id: 9,
+      title: "충북 방아로스터리 카페 데크리모델링",
+      category: "commercial",
+      year: "2025",
+      description: "야외 테라스의 정취를 살리는 천연 원목 데크 시공 및 카페 외부 공간 리모델링",
+      image: bedImg,
+      tags: ["카페인테리어", "야외데크", "리모델링"],
+    },
+    {
+      id: 10,
+      title: "포천 술빚는 전가네",
+      category: "commercial",
+      year: "2025",
+      description: "전통주의 깊은 맛과 어우러지는 집기 제작",
+      image: bedImg,
+      tags: ["전통음식점", "매장인테리어", "포천"],
+    },
   ];
 
   const filteredProjects =
@@ -170,7 +206,7 @@ export function Projects() {
             <p className="text-lg text-gray-600 mb-8">공간에 딱 맞는 가구를 제작해드립니다</p>
             <a
               href="/custom-order"
-              className="inline-block bg-gray-900 text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+              className="inline-block bg-[#1C352D] text-[#F9F6F3] px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors"
             >
               맞춤 제작 문의하기
             </a>
