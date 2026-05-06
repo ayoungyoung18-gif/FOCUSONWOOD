@@ -7,6 +7,10 @@ import samharuImg from "../../assets/images/samharu.jpg";
 import centerImg from "../../assets/images/communityCenter.png";
 import kinderImg from "../../assets/images/kindergarden.jpg";
 import bedImg from "../../assets/images/bed.jpg";
+import carving from "../../assets/images/carving2.jpg";
+import studentLounge from "../../assets/images/studentLounge1.jpg";
+import banga from "../../assets/images/banga.jpg";
+import Drinkingstore from "../../assets/images/projectDrinkingstore1.png";
 
 export function Projects() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -79,7 +83,7 @@ export function Projects() {
       category: "custom",
       year: "2025",
       description: "관공서·기업 명패 및 단체 상패 맞춤 제작",
-      image: bedImg, // 추후 명패/상패 이미지로 교체 권장
+      image: carving,
       tags: ["단체주문", "나무명패", "감사패", "기업제작"],
     },
     {
@@ -88,7 +92,7 @@ export function Projects() {
       category: "commercial",
       year: "2025",
       description: "학생들의 쉼을 위한 밴치 배치 및 편안한 분위기의 휴게 공간 조성",
-      image: bedImg,
+      image: studentLounge,
       tags: ["학교인테리어", "휴게공간", "맞춤가구"],
     },
     {
@@ -97,7 +101,7 @@ export function Projects() {
       category: "commercial",
       year: "2025",
       description: "야외 테라스의 정취를 살리는 천연 원목 데크 시공 및 카페 외부 공간 리모델링",
-      image: bedImg,
+      image: banga,
       tags: ["카페인테리어", "야외데크", "리모델링"],
     },
     {
@@ -106,7 +110,7 @@ export function Projects() {
       category: "commercial",
       year: "2025",
       description: "전통주의 깊은 맛과 어우러지는 집기 제작",
-      image: bedImg,
+      image: Drinkingstore,
       tags: ["전통음식점", "매장인테리어", "포천"],
     },
   ];
