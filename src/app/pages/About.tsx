@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { Award, Users, TreePine, Sparkles } from "lucide-react";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { ImageWithFallback } from "../components/image/ImageWithFallback";
 
 export function About() {
   const values = [

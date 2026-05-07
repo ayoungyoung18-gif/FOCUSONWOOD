@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, ChevronRight, ChevronLeft } from "lucide-react";
 
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { ImageWithFallback } from "../components/image/ImageWithFallback";
 import award2019 from "@/assets/images/award20192.png";
 import teaching1 from "@/assets/images/teaching1.png";
 import siganatureTC from "@/assets/images/signaturetableandchair.png";

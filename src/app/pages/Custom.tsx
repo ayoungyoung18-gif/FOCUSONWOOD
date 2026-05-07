@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { ClipboardList, MessageSquare, Ruler, Wrench, CheckCircle, Package } from "lucide-react";
 import { Link } from "react-router-dom";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { ImageWithFallback } from "../components/image/ImageWithFallback";
 
 export function Custom() {
   const process = [

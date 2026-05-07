@@ -2,8 +2,6 @@ import { X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
-// ... 상단 import 부분 동일
-
 export function KakaoChat() {
   const [isOpen, setIsOpen] = useState(false);
 

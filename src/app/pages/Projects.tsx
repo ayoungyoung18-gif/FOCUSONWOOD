@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useState } from "react";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { ImageWithFallback } from "../components/image/ImageWithFallback";
 import ddpImg from "../../assets/images/ddp.png";
 import schoolImg from "../../assets/images/project_school.png";
 import samharuImg from "../../assets/images/samharu.jpg";

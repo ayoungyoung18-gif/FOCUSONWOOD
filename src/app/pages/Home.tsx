@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Hammer, Heart, Leaf, ShoppingBag, Calendar, ChevronUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { ImageWithFallback } from "../components/image/ImageWithFallback";
 import { newsData } from "../../data/newsData";
 
 // 1. 이미지 에셋 Import

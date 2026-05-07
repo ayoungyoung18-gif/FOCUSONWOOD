@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TreePine, Award, Heart, Users, Calendar, ChevronRight, ChevronLeft } from "lucide-react";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { ImageWithFallback } from "../components/image/ImageWithFallback";
 import { newsData } from "../../data/newsData";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react"; // 아이콘 라이브러리 사용 시
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { ImageWithFallback } from "../components/image/ImageWithFallback";
 import { LayoutGrid, Layers, ChevronLeft, ChevronRight } from "lucide-react";
 
 export function WoodTypes() {
