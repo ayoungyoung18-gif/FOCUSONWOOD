@@ -1,99 +1,74 @@
-import { useEffect, useRef, useState } from "react";
-import { loadTossPayments } from "@tosspayments/tosspayments-sdk";
-import { useCart } from "../context/CartContext"; // 🟢 장바구니 컨텍스트 경로를 확인하세요!
+import { useEffect, useRef } from "react";
+import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk";
+import { useCart } from "../context/CartContext"; // 🟢 장바구니 경로를 확인해 주세요!
 
-// 토스페이먼츠 공식 지정 최신 샌드박스 가상 테스트 키입니다.
-const clientKey = "test_gck_docs_O9ONkM1bkyydb7L2EO38VMw6";
-const customerKey = "GUEST_USER_ANONYMOUS_FOW";
+// 토스페이먼츠 공식 테스트 클라이언트 키입니다 (사업자 등록 전 가상 테스트용)
+const clientKey = "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm";
+const customerKey = "ANONYMOUS"; // 비회원 또는 임시 유저 식별 키
 
 export default function CheckoutPage() {
   const { totalPrice, items } = useCart();
-  const widgetsRef = useRef<any>(null);
-  const [isWidgetReady, setIsWidgetReady] = useState(false);
+  const paymentWidgetRef = useRef<any>(null);
+  const paymentMethodsWidgetRef = useRef<any>(null); // 중복 렌더링 방지용 Ref
 
-  // 🟢 핵심 수정: 리액트 화면이 완벽하게 그려진 후 0.2초 뒤에 토스 엔진을 강제 구동합니다.
   useEffect(() => {
-    if (!totalPrice || totalPrice <= 0) return;
+    async function initPaymentWidget() {
+      // 장바구니 총 금액이 0보다 클 때만 안전하게 결제 위젯을 그리도록 수정합니다.
+      if (totalPrice > 0) {
+        // 1. 토스 결제위젯 초기화
+        const paymentWidget = await loadPaymentWidget(clientKey, customerKey);
 
-    let mounted = true;
+        // 리액트 특유의 중복 랜더링 버그를 방지하기 위해, 이미 그려진 경우 금액만 업데이트합니다.
+        if (paymentMethodsWidgetRef.current) {
+          paymentMethodsWidgetRef.current.updateAmount(totalPrice);
+        } else {
+          // 2. 주문서 영역에 카카오페이/네이버페이/카드 결제 UI를 자동으로 렌더링
+          const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
+            "#payment-method",
+            { value: totalPrice },
+            { variantKey: "DEFAULT" }, // 기본 디자인 테마 지정
+          );
 
-    // 💡 200ms(0.2초)의 인위적인 딜레이를 주어 HTML 태그(#payment-element)가 완전히 준비될 시간을 벌어줍니다.
-    const timer = setTimeout(() => {
-      async function initTossv2Engine() {
-        try {
-          const methodDiv = document.getElementById("payment-element");
-          const agreementDiv = document.getElementById("agreement-element");
+          // 3. 이용약관 UI 렌더링
+          paymentWidget.renderAgreement("#agreement", { variantKey: "DEFAULT" });
 
-          // 태그가 없으면 주입을 차단하여 에러를 방지합니다.
-          if (!methodDiv || !agreementDiv || !mounted) return;
-
-          // 토스 인프라 비동기 로드
-          const tossPayments = await loadTossPayments(clientKey);
-          if (!mounted) return;
-
-          const widgets = tossPayments.widgets({ customerKey });
-
-          // 결제 최종 금액 동기화
-          await widgets.setAmount({
-            currency: "KRW",
-            value: totalPrice,
-          });
-
-          // 💡 타겟 구역에 카드사 목록과 카카오/네이버 간편결제 UI를 강제 드로잉합니다.
-          await widgets.renderPaymentMethods({
-            selector: "#payment-element",
-            variantKey: "DEFAULT",
-          });
-
-          // 이용약관 스크립트 영역 동시 주입
-          await widgets.renderAgreement({
-            selector: "#agreement-element",
-            variantKey: "DEFAULT",
-          });
-
-          if (mounted) {
-            widgetsRef.current = widgets;
-            setIsWidgetReady(true); // 🟢 로딩이 대성공했음을 신호로 알립니다!
-          }
-        } catch (error) {
-          console.error("토스 인프라 강제 부팅 실패:", error);
+          paymentMethodsWidgetRef.current = paymentMethodsWidget;
         }
+
+        paymentWidgetRef.current = paymentWidget;
       }
+    }
 
-      initTossv2Engine();
-    }, 200);
+    initPaymentWidget();
+  }, [totalPrice]); // 장바구니 금액이 바뀔 때마다 결제 금액도 자동 갱신됩니다.
 
-    return () => {
-      mounted = false;
-      clearTimeout(timer);
-    };
-  }, [totalPrice]); // 결제 총액이 감지되는 즉시 0.2초 타이머가 가동됩니다.
-
-  // 결제하기 버튼 실행 제어 함수
   const handlePaymentRequest = async () => {
-    const widgets = widgetsRef.current;
+    const paymentWidget = paymentWidgetRef.current;
 
-    if (!widgets || !isWidgetReady) {
-      alert("결제망을 연결 중입니다. 잠시만 기다려주세요!");
+    if (!paymentWidget) {
+      alert("결제 창이 아직 준비되지 않았습니다. 잠시 후 다시 시도해 주세요.");
       return;
     }
 
+    // 장바구니 첫 번째 상품 이름을 대표 주문 이름으로 설정 (예: 보드기 외 2건)
     const orderName =
-      items.length > 1 ? `${items[0].name} 외 ${items.length - 1}건` : items[0]?.name || "포커스온우드 원목 오브제";
+      items.length > 1 ? `${items[0].name} 외 ${items.length - 1}건` : items[0]?.name || "포커스온우드 원목 소품";
 
     try {
-      await widgets.requestPayment({
-        orderId: `FOW-ORDER-${Date.now()}`,
+      // 3. [결제하기] 버튼을 누르면 토스 보안 결제창이 팝업으로 실행됩니다.
+      await paymentWidget.requestPayment({
+        orderId: `FOW-${Date.now()}`, // 주문할 때마다 바뀌는 고유 주문번호 생성
         orderName: orderName,
-        successUrl: `${window.location.origin}/success`,
-        failUrl: `${window.location.origin}/fail`,
+        successUrl: `${window.location.origin}/success`, // 결제 성공 시 이동할 내 사이트 주소
+        failUrl: `${window.location.origin}/fail`, // 결제 실패 시 이동할 내 사이트 주소
       });
     } catch (error) {
-      console.error("결제 승인창 실행 실패:", error);
+      console.error("결제창 실행 실패:", error);
     }
   };
 
   if (items.length === 0) {
+    // 💡 비어있을 때 화면도 헤더 가림 방지를 위해 패딩 추가
     return (
       <div style={{ padding: "160px 20px 50px 20px", textAlign: "center" }}>
         장바구니가 비어있습니다. 상품을 먼저 담아주세요!
@@ -102,41 +77,22 @@ export default function CheckoutPage() {
   }
 
   return (
+    // 💡 핵심 수정: padding-top을 40px에서 140px로 늘려 고정형 헤더(Header) 아래로 주문서가 밀려 내려오게 조치했습니다.
     <div style={{ padding: "140px 20px 60px 20px", maxWidth: "600px", margin: "0 auto", color: "#191919" }}>
-      <h2
-        style={{
-          fontSize: "24px",
-          fontWeight: "bold",
-          marginBottom: "30px",
-          borderBottom: "2px solid #191919",
-          paddingBottom: "10px",
-        }}
-      >
-        주문서 / 결제하기
-      </h2>
+      <h2 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "30px" }}>주문서 / 결제하기</h2>
 
-      {/* 장바구니 명세 요약 박스 */}
-      <div
-        style={{
-          backgroundColor: "#fdfdfd",
-          borderRadius: "12px",
-          padding: "20px",
-          border: "1px solid #eee",
-          marginBottom: "20px",
-        }}
-      >
+      {/* 장바구니 요약 정보 리스트 */}
+      <div style={{ borderBottom: "1px solid #eee", paddingBottom: "20px", marginBottom: "20px" }}>
         {items.map((item) => (
-          <div
-            key={item.id}
-            style={{ display: "flex", justifyContent: "space-between", marginBottom: "12px", fontSize: "15px" }}
-          >
-            <span style={{ color: "#555" }}>
-              {item.name} <span style={{ color: "#999", fontSize: "13px" }}>(x{item.quantity})</span>
+          <div key={item.id} style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+            <span>
+              {item.name} (x{item.quantity})
             </span>
-            <span style={{ fontWeight: "600" }}>{(item.price * item.quantity).toLocaleString()}원</span>
+            <span style={{ marginLeft: "auto", fontWeight: "600" }}>
+              {(item.price * item.quantity).toLocaleString()}원
+            </span>
           </div>
         ))}
-
         <div
           style={{
             display: "flex",
@@ -144,37 +100,34 @@ export default function CheckoutPage() {
             marginTop: "20px",
             fontSize: "18px",
             fontWeight: "bold",
-            borderTop: "1px dashed #eee",
-            paddingTop: "15px",
           }}
         >
           <span>최종 결제 금액</span>
-          <span style={{ color: "#B38B5D" }}>{totalPrice.toLocaleString()}원</span>
+          <span style={{ marginLeft: "auto", color: "#B38B5D" }}>{totalPrice.toLocaleString()}원</span>
         </div>
       </div>
 
-      {/* 🟢 시간차 레이아웃 버그를 우회하여 신용카드 탭과 로고들을 그려내는 무대입니다 */}
-      <div id="payment-element" style={{ marginBottom: "15px", minHeight: "350px" }} />
-      <div id="agreement-element" style={{ marginBottom: "25px" }} />
+      {/* 🟢 이 자리에 토스페이먼츠가 제공하는 간편결제 UI가 코딩 없이 자동으로 그려집니다 */}
+      <div id="payment-method" style={{ marginBottom: "20px", minHeight: "300px" }} />
+      <div id="agreement" style={{ marginBottom: "30px" }} />
 
-      {/* 실시간 최종 결제 버튼 */}
+      {/* 최종 구매자가 누르는 결제 버튼 */}
       <button
         onClick={handlePaymentRequest}
         style={{
           width: "100%",
-          height: "56px",
+          height: "54px",
           backgroundColor: "#191919",
           color: "#fff",
           border: "none",
-          borderRadius: "12px",
+          borderRadius: "8px",
           fontSize: "18px",
           fontWeight: "bold",
           cursor: "pointer",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-          opacity: isWidgetReady ? 1 : 0.6,
+          transition: "background 0.2s",
         }}
       >
-        {isWidgetReady ? `${totalPrice.toLocaleString()}원 결제하기` : "결제 시스템 구동 중..."}
+        {totalPrice.toLocaleString()}원 결제하기
       </button>
     </div>
   );
