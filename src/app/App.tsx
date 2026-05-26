@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes";
 import { CartProvider } from "./context/CartContext";
-// 🟢 경로를 기존에 사용하시던 AuthContext로 수정했습니다.
 import { AuthProvider } from "./context/AuthContext";
 import { motion, AnimatePresence } from "framer-motion";
 
