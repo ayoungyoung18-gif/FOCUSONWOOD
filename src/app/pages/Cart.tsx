@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // 🟢 useNavigate를 추가로 불러옵니다.
 import { Trash2, ShoppingBag } from "lucide-react";
 import { ImageWithFallback } from "../components/image/ImageWithFallback";
 import { useCart } from "../context/CartContext";
 
 export function Cart() {
   const { items, removeFromCart, updateQuantity, totalPrice, totalItems } = useCart();
+  const navigate = useNavigate(); // 🟢 이동 기능을 선언합니다.
 
   if (items.length === 0) {
     return (
@@ -82,7 +83,11 @@ export function Cart() {
           </div>
         </div>
 
-        <button className="w-full bg-gray-900 text-white py-4 rounded-lg mt-6 hover:bg-gray-800 transition-colors text-lg">
+        {/* 🟢 버튼에 onClick 이벤트를 달아 결제 페이지(/checkout)로 유저를 넘겨줍니다. */}
+        <button
+          onClick={() => navigate("/checkout")}
+          className="w-full bg-gray-900 text-white py-4 rounded-lg mt-6 hover:bg-gray-800 transition-colors text-lg"
+        >
           구매하기
         </button>
       </div>

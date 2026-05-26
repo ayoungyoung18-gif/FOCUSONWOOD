@@ -13,6 +13,8 @@ import { ProductDetail } from "./pages/ProductDetail";
 import { CustomOrder } from "./pages/CustomOrder";
 import { Cart } from "./pages/Cart";
 import { Root } from "./pages/Root";
+import CheckoutPage from "./pages/CheckoutPage";
+import SuccessPage from "./pages/SuccessPage";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +34,14 @@ export const router = createBrowserRouter([
       { path: "shop/:id", Component: ProductDetail },
       { path: "custom-order", Component: CustomOrder },
       { path: "cart", Component: Cart },
+      {
+        path: "/checkout",
+        element: <CheckoutPage />,
+      },
+      {
+        path: "/success", // 🟢 주소창에 /success 가 잡히면
+        element: <SuccessPage />, // 🟢 이 영수증 화면을 보여줍니다!
+      },
     ],
   },
 ]);
