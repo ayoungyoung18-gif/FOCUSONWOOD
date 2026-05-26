@@ -2,7 +2,6 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useAuth } from "../context/AuthContext";
-import { supabase } from "../../supabaseClient"; // 🟢 수파베이스 클라이언트 불러오기
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -12,7 +11,9 @@ interface LoginModalProps {
 export function LoginModal({ isOpen, onClose }: LoginModalProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
+
+  // 🟢 이전 단계에서 AuthContext에 추가한 loginWithKakao 함수를 가져옵니다.
+  const { login, loginWithKakao } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,20 +21,10 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
     onClose();
   };
 
-  // 🟢 카카오 로그인 처리 함수 추가
-  const handleKakaoLogin = async () => {
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: "kakao",
-        options: {
-          redirectTo: window.location.origin, // 로그인 후 내 쇼핑몰 주소로 복귀
-        },
-      });
-      if (error) throw error;
-    } catch (error: any) {
-      console.error("카카오 로그인 에러:", error.message);
-      alert("카카오 로그인 중 오류가 발생했습니다.");
-    }
+  // 🟢 컨텍스트의 함수를 호출하도록 변경하여 모달 내부 코드를 간결하게 유지합니다.
+  const handleKakaoLoginClick = async () => {
+    await loginWithKakao();
+    onClose(); // 로그인 요청이 성공적으로 시작되면 모달을 닫습니다.
   };
 
   return (
@@ -101,7 +92,7 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 </button>
               </form>
 
-              {/* 🟢 기존 폼 아래에 구별선과 카카오 로그인 버튼 배치 */}
+              {/* 구별선 */}
               <div className="relative my-6 text-center">
                 <hr className="border-gray-200" />
                 <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-2 text-xs text-gray-400">
@@ -109,9 +100,10 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 </span>
               </div>
 
+              {/* 🟢 수정된 카카오 로그인 핸들러 함수를 바인딩했습니다. */}
               <button
                 type="button"
-                onClick={handleKakaoLogin}
+                onClick={handleKakaoLoginClick}
                 className="w-full flex items-center justify-center gap-2 bg-[#FEE500] text-[#191919] py-3 rounded-lg hover:bg-[#FCE000] transition-colors font-medium"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
