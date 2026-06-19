@@ -15,6 +15,9 @@ import { Cart } from "./pages/Cart";
 import { Root } from "./pages/Root";
 import CheckoutPage from "./pages/CheckoutPage";
 import SuccessPage from "./pages/SuccessPage";
+// 🚨 추가된 파일 임포트 (본인의 폴더 경로에 맞춰 파일명을 확인하세요)
+import TermsPage from "./pages/TermsPage"; 
+import PrivacyPage from "./pages/PrivacyPage";
 
 export const router = createBrowserRouter([
   {
@@ -39,8 +42,16 @@ export const router = createBrowserRouter([
         element: <CheckoutPage />,
       },
       {
-        path: "/success", // 🟢 주소창에 /success 가 잡히면
-        element: <SuccessPage />, // 🟢 이 영수증 화면을 보여줍니다!
+        path: "/success",
+        element: <SuccessPage />,
+      },
+      {
+        path: "/terms", // 🔵 주소창에 /terms 가 잡히면
+        element: <TermsPage />, // 🔵 이용약관 화면을 보여줍니다!
+      },
+      {
+        path: "/privacy", // 🔵 주소창에 /privacy 가 잡히면
+        element: <PrivacyPage />, // 🔵 개인정보처리방침 화면을 보여줍니다!
       },
     ],
   },

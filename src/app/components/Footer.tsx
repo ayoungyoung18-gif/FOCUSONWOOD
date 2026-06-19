@@ -110,13 +110,13 @@ export function Footer() {
               <p>
                 사업자등록번호: 350-48-00436{" "}
                 <a 
-                  href="https://www.ftc.go.kr/www/selectBizCommList.do" 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  className="underline hover:text-[#D4A373] ml-1"
-                >
-                  [사업자정보확인]
-                </a>
+  href="https://ftc.go.kr" 
+  target="_blank" 
+  rel="noreferrer" 
+  className="underline hover:text-[#D4A373] ml-1"
+>
+  [사업자정보확인]
+</a>
               </p>
             </div>
             <div className="space-y-1">
