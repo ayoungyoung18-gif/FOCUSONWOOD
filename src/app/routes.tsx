@@ -15,9 +15,11 @@ import { Cart } from "./pages/Cart";
 import { Root } from "./pages/Root";
 import CheckoutPage from "./pages/CheckoutPage";
 import SuccessPage from "./pages/SuccessPage";
-// 🚨 추가된 파일 임포트 (본인의 폴더 경로에 맞춰 파일명을 확인하세요)
 import TermsPage from "./pages/TermsPage"; 
 import PrivacyPage from "./pages/PrivacyPage";
+import { AdminPage } from "./pages/AdminPage"; 
+// 🔒 철벽 보안 가드 임포트
+import { AdminGuard } from "./components/AdminGuard"; 
 
 export const router = createBrowserRouter([
   {
@@ -37,21 +39,17 @@ export const router = createBrowserRouter([
       { path: "shop/:id", Component: ProductDetail },
       { path: "custom-order", Component: CustomOrder },
       { path: "cart", Component: Cart },
+      { path: "/checkout", element: <CheckoutPage /> },
+      { path: "/success", element: <SuccessPage /> },
+      { path: "/terms", element: <TermsPage /> },
+      { path: "/privacy", element: <PrivacyPage /> },
       {
-        path: "/checkout",
-        element: <CheckoutPage />,
-      },
-      {
-        path: "/success",
-        element: <SuccessPage />,
-      },
-      {
-        path: "/terms", // 🔵 주소창에 /terms 가 잡히면
-        element: <TermsPage />, // 🔵 이용약관 화면을 보여줍니다!
-      },
-      {
-        path: "/privacy", // 🔵 주소창에 /privacy 가 잡히면
-        element: <PrivacyPage />, // 🔵 개인정보처리방침 화면을 보여줍니다!
+        path: "/focus-internal-admin-vault", // 🔒 주소를 복잡하게 꼬아 해커의 접근 유추를 원천 차단
+        element: (
+          <AdminGuard>
+            <AdminPage />
+          </AdminGuard>
+        ),
       },
     ],
   },
