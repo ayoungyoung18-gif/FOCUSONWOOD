@@ -1,4 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
+import { useEffect, useState } from 'react'; // 🚨 필수 임포트 추가
+import { supabase } from '../supabaseClient';   // 🚨 본인의 supabaseClient 경로 확인
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { BrandStory } from "./pages/BrandStory";
@@ -18,9 +20,38 @@ import SuccessPage from "./pages/SuccessPage";
 import TermsPage from "./pages/TermsPage"; 
 import PrivacyPage from "./pages/PrivacyPage";
 import { AdminPage } from "./pages/AdminPage"; 
-// 🔒 철벽 보안 가드 임포트
-import { AdminGuard } from "./components/AdminGuard"; 
+import { MyPage } from "./pages/MyPage"; 
+import { Navigate } from 'react-router-dom';
 
+// 🔒 [철벽 보안 가드] 경로 에러 방지를 위해 라우터 파일 내부로 강제 이식
+const ALLOWED_ADMINS = ['cju****@naver.com', '내구글지메일@gmail.com']; // 🚨 내 메일로 고치기
+
+function AdminGuard({ children }: { children: React.ReactNode }) {
+  const [status, setStatus] = useState<'loading' | 'authorized' | 'unauthorized'>('loading');
+
+  useEffect(() => {
+    const verifyIdentity = async () => {
+      const { data: { user }, error } = await supabase.auth.getUser();
+      if (error || !user || !user.email) {
+        setStatus('unauthorized');
+        return;
+      }
+      if (ALLOWED_ADMINS.includes(user.email)) {
+        setStatus('authorized');
+      } else {
+        setStatus('unauthorized');
+      }
+    };
+    verifyIdentity();
+  }, []);
+
+  if (status === 'loading') {
+    return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', backgroundColor: '#1A2F28', color: '#F1EDE8' }}>권한 보안 검증 중...</div>;
+  }
+  return status === 'authorized' ? <>{children}</> : <Navigate to="/" replace />;
+}
+
+// 🌐 실제 서비스 라우터 인프라 매칭
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -44,12 +75,16 @@ export const router = createBrowserRouter([
       { path: "/terms", element: <TermsPage /> },
       { path: "/privacy", element: <PrivacyPage /> },
       {
-        path: "/focus-internal-admin-vault", // 🔒 주소를 복잡하게 꼬아 해커의 접근 유추를 원천 차단
+        path: "/focus-internal-admin-vault", 
         element: (
           <AdminGuard>
             <AdminPage />
           </AdminGuard>
         ),
+      },
+      {
+        path: "/mypage", 
+        element: <MyPage />, 
       },
     ],
   },
