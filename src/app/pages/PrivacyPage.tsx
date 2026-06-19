@@ -41,7 +41,7 @@ export default function PrivacyPage() {
             <p>회사는 이용자의 개인정보를 보호하고 관련 불만을 처리하기 위하여 아래와 같이 개인정보보호책임자를 지정하고 있습니다.</p>
             <div className="bg-[#F1EDE8]/20 p-4 rounded border border-[#1A2F28]/5 mt-2 space-y-1 text-[13px]">
               <p><strong>책임자 성명:</strong> 최정웅 대표</p>
-              <p><strong>문의 이메일:</strong> cju7789@gmail.com </p>
+              <p><strong>문의 이메일:</strong> cju7789@naver.com </p>
             </div>
           </section>
         </div>

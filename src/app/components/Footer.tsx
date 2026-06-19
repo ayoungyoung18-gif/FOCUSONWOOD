@@ -110,7 +110,7 @@ export function Footer() {
               <p>
                 사업자등록번호: 350-48-00436{" "}
                 <a 
-  href="https://ftc.go.kr" 
+  href="https://www.ftc.go.kr/www/selectBizCommView.do?pageUnit=10&pageIndex=1&searchCnd=BRNO&searchKrwd=3504800436&key=253&token=0F7B57A9-C551-7466-5141-D0BFCA41DA855AF722B2D4FB7E0681ED4E585789A549&opnSn=2020560017030200100" 
   target="_blank" 
   rel="noreferrer" 
   className="underline hover:text-[#D4A373] ml-1"
