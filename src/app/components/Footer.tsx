@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 export function Footer() {
   return (
     <footer className="bg-[#1A2F28] text-[#F1EDE8]/90">
-      {/* 1. py-16 -> py-10으로 줄여 전체 높이 감소 */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-10">
-        {/* 2. gap-12 -> gap-8로 조정하여 밀도 상향 */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info - 가로 폭을 넓게 쓰도록 md:col-span-1 유지 */}
+          {/* Company Info */}
           <div className="space-y-4">
             <span className="text-lg text-[#F1EDE8] tracking-widest font-medium block">FOCUS ON WOOD</span>
             <p className="text-[#F1EDE8]/60 leading-relaxed text-[13px] max-w-[200px]">
@@ -16,7 +14,7 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Quick Links - 제목과 리스트 간격 축소 */}
+          {/* Quick Links */}
           <div>
             <h3 className="text-[#D4A373] text-[13px] font-semibold mb-4 uppercase tracking-wider">메뉴</h3>
             <ul className="space-y-2 text-[13px]">
@@ -65,17 +63,17 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact - 아이콘 크기 및 간격 최적화 */}
+          {/* Contact */}
           <div>
             <h3 className="text-[#D4A373] text-[13px] font-semibold mb-4 uppercase tracking-wider">연락처</h3>
             <div className="space-y-2.5 text-[13px] text-[#F1EDE8]/60">
               <div className="flex items-center space-x-2">
                 <Phone size={12} className="text-[#D4A373]" />
-                <span>02-1234-5678</span>
+                <span>010-9991-1341</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail size={12} className="text-[#D4A373]" />
-                <span>info@namugyeol.kr</span>
+                <span>cju7789@gmail.com</span>
               </div>
               <div className="flex items-start space-x-2">
                 <MapPin size={12} className="mt-0.5 text-[#D4A373]" />
@@ -83,7 +81,6 @@ export function Footer() {
               </div>
             </div>
 
-            {/* 인스타그램 버튼 크기 축소 */}
             <div className="flex mt-5">
               <a
                 href="https://www.instagram.com/focusonwood/"
@@ -96,9 +93,43 @@ export function Footer() {
           </div>
         </div>
 
-        {/* 3. mt-16 -> mt-10으로 줄임 */}
-        <div className="border-t border-[#F1EDE8]/5 mt-10 pt-6 text-[#F1EDE8]/30 text-[11px] text-center">
-          <p>&copy; 2026 FOCUS ON WOOD. All rights reserved.</p>
+        {/* ─── 토스 결제 심사 필수 정보 영역 추가 ─── */}
+        <div className="border-t border-[#F1EDE8]/5 mt-10 pt-6 text-[11px] text-[#F1EDE8]/50 space-y-4">
+          
+          {/* 법적 약관 링크 (개인정보처리방침은 굵게 처리하여 심사 위반 방지) */}
+          <div className="flex justify-center gap-5 text-[12px]">
+            <Link to="/terms" className="hover:text-[#D4A373] transition-colors">이용약관</Link>
+            <Link to="/privacy" className="font-bold text-[#F1EDE8] hover:text-[#D4A373] transition-colors">개인정보처리방침</Link>
+          </div>
+
+          {/* 전자상거래법 필수 사업자 고지 정보 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 text-center md:text-left max-w-4xl mx-auto leading-relaxed">
+            <div className="space-y-1">
+              <p>상호명: 포커스온우드 | 대표자: 최정웅</p>
+              <p>주소: 경기도 포천시 자작로 93-5</p>
+              <p>
+                사업자등록번호: 350-48-00436{" "}
+                <a 
+                  href="https://www.ftc.go.kr/www/selectBizCommList.do" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="underline hover:text-[#D4A373] ml-1"
+                >
+                  [사업자정보확인]
+                </a>
+              </p>
+            </div>
+            <div className="space-y-1">
+              <p>통신판매업신고: 제 2026-경기포천-0101</p>
+              <p>개인정보보호책임자: 최정웅 (cju7789@gmail.com)</p>
+              <p>호스팅서비스제공자: Vercel / Supabase</p>
+            </div>
+          </div>
+
+          {/* 저작권 표시 */}
+          <div className="text-center text-[#F1EDE8]/30 pt-2">
+            <p>&copy; 2026 FOCUS ON WOOD. All rights reserved.</p>
+          </div>
         </div>
       </div>
     </footer>
