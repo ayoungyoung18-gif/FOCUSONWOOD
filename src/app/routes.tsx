@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import { useEffect, useState } from 'react'; // 🚨 필수 임포트 추가
-import { supabase } from '../supabaseClient';   // 🚨 본인의 supabaseClient 경로 확인
+import { useEffect, useState } from 'react'; 
+import { supabase } from '../supabaseClient';   
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { BrandStory } from "./pages/BrandStory";
@@ -21,10 +21,11 @@ import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import { AdminPage } from "./pages/AdminPage"; 
 import { MyPage } from "./pages/MyPage"; 
+import { SignUp } from "./pages/SignUp"; // 🚨 회원가입 컴포넌트 추가
+import { Login } from "./pages/Login";   // 🚨 로그인 컴포넌트 추가
 import { Navigate } from 'react-router-dom';
 
-// 🔒 [철벽 보안 가드] 경로 에러 방지를 위해 라우터 파일 내부로 강제 이식
-const ALLOWED_ADMINS = ['cju****@naver.com', '내구글지메일@gmail.com']; // 🚨 내 메일로 고치기
+const ALLOWED_ADMINS = ['cju****@naver.com', '내구글지메일@gmail.com']; 
 
 function AdminGuard({ children }: { children: React.ReactNode }) {
   const [status, setStatus] = useState<'loading' | 'authorized' | 'unauthorized'>('loading');
@@ -51,7 +52,6 @@ function AdminGuard({ children }: { children: React.ReactNode }) {
   return status === 'authorized' ? <>{children}</> : <Navigate to="/" replace />;
 }
 
-// 🌐 실제 서비스 라우터 인프라 매칭
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -85,6 +85,17 @@ export const router = createBrowserRouter([
       {
         path: "/mypage", 
         element: <MyPage />, 
+      },
+      /* ────────────────────────────────────────────────────────
+         🔐 [인증 인프라 확장] 회원가입 및 로그인 라우트 신설
+         ──────────────────────────────────────────────────────── */
+      {
+        path: "/signup",
+        element: <SignUp />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },
