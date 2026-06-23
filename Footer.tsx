@@ -73,7 +73,7 @@ export function Footer() {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail size={12} className="text-[#D4A373]" />
-                <span>cju7789@gmail.com</span>
+                <span>info@focusonwood.com</span>
               </div>
               <div className="flex items-start space-x-2">
                 <MapPin size={12} className="mt-0.5 text-[#D4A373]" />
@@ -121,7 +121,7 @@ export function Footer() {
             </div>
             <div className="space-y-1">
               <p>통신판매업신고: 제 2026-경기포천-0101</p>
-              <p>개인정보보호책임자: 최정웅 (cju7789@gmail.com)</p>
+              <p>개인정보보호책임자: 최정웅 (info@focusonwood.com)</p>
               <p>호스팅서비스제공자: Vercel / Supabase</p>
             </div>
           </div>
